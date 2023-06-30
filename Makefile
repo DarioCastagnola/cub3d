@@ -6,13 +6,13 @@
 #    By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:46:42 by dcastagn          #+#    #+#              #
-#    Updated: 2023/06/28 12:24:01 by dcastagn         ###   ########.fr        #
+#    Updated: 2023/06/30 12:36:59 by dcastagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
 
-SRC			= $(wildcard gnl/*.c) $(wildcard *.c) $(wildcard errors/*.c)
+SRC		= $(wildcard gnl/*.c) $(wildcard *.c) $(wildcard errors/*.c)
 
 OBJ		= $(SRC:%.c=%.o)
 
@@ -27,21 +27,14 @@ BLUE	= \033[1;34m
 RESET	= \033[0;0m
 
 $(NAME): $(OBJ)
-	@make -C libft
-ifeq ($(shell uname), Linux)
-	@make -C minilibx-linux
-	$(CC) $(FLAGS) $(OBJ) -L ./libft -lft -L ./minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
-
-endif
-	@printf "\r\033[KCUBE3D  CREATED  SUCCESSUFULLY\n$(RESET)"
+	@make -C libft > /dev/null
+	@make -C minilibx-linux > /dev/null 2>&1
+	@$(CC) $(FLAGS) $(OBJ) -L ./libft -lft -L ./minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+	@printf "$(GREEN)cub3d initialized\n$(RESET)"
 	@printf "$(BLUE)-------------------------------------------------------------------------\n$(RESET)"
 
 %.o : %.c
-ifeq ($(shell uname),Linux)
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imxl_linux -O3 -c $< -o $@
-
-endif
-		
+	@$(CC) -Wall -Wextra -Werror -I/usr/include -Imxl_linux -c $< -o $@
 
 all: $(NAME)
 
@@ -49,22 +42,20 @@ linux: $(OBJ)
 	$(CC) -fsanitize=address $(OBJ) $(RDLN_L) -o $(NAME)
 
 clean:
-ifeq ($(shell uname), Linux)
-	@make -C minilibx-linux clean
-	@rm -rf libmlx.dylib
-endif
-	@make -C libft clean
+	@make -C minilibx-linux clean > /dev/null
+	@rm -rf libmlx.dylib > /dev/null
+	@make -C libft clean > /dev/null
 	@printf "$(RED)\nRemoving Object files...\n$(RESET)"
 	@printf "$(BLUE)-------------------------------------------------------------------------\n$(RESET)"
 	@$(RM) $(OBJ)
 	@printf "$(RED)Object files removed\n$(RESET)"
 	
 fclean: clean
-	@make -C libft fclean
+	@make -C libft fclean > /dev/null
 	@printf "$(RED)\nRemoving program executable...\n$(RESET)"
 	@printf "$(BLUE)-------------------------------------------------------------------------\n$(RESET)"
 	@$(RM) $(NAME)
-	@printf "$(RED)CUDE3D REMOVED\n$(RESET)"
+	@printf "$(RED)Cub3d removed\n$(RESET)"
 
 	
 re: fclean all

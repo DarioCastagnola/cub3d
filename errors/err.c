@@ -6,11 +6,11 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:09:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/06/28 12:13:53 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:30:57 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "errors.h"
+#include "../cub3d.h"
 
 void	*null_error(char *message)
 {

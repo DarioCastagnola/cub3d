@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/06/30 16:39:29 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/04 10:44:48 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,7 @@ void	ft_check_input(char *s)
 int	ft_destroy_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->mlx_win);
-	exit(printf("The evil forces reign on\n"));
-}
-
-void	initialization(t_game *game)
-{	
-	game->mlx = mlx_init();
-	game->mlx_win = mlx_new_window (game->mlx, SCREEN_W, SCREEN_H, "cub3d");
+	exit(printf("YOU SHOULD KISS YOURSELF NOW!!\n"));
 }
 
 int	main(int argc, char **argv)
@@ -44,26 +38,6 @@ int	main(int argc, char **argv)
 	initialization(&game);
 	mlx_hook(game.mlx_win, 17, 0, ft_destroy_window, &game);
 	mlx_loop(game.mlx);
+	player_initialization(&game);
 }
 
-int	find_player(t_map *map)
-{
-	int	y;
-	int	x;
-
-	y = -1;
-	while (map->map[++y])
-	{
-		x = -1;
-		while (map->map[y][++x])
-		{
-			if (ft_strchr("NSWE", map->map[y][x]))
-			{
-				map->player_pos.x = x;
-				map->player_pos.y = y;
-				return (1);
-			}
-		}
-	}
-	return (0);
-}

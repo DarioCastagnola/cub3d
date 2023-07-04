@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/06/30 15:37:05 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:42:09 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
-# include "errors/errors.h"
 # include "gnl/gnl.h"
 # include <fcntl.h>
 # include <math.h>
@@ -40,42 +39,60 @@
 
 // ---------- STRUCTS
 
-// framebuffer
-typedef struct s_frame
-{
-    uint32_t width;
-    uint32_t height;
-    //TrueColorPixel *data;
-}	t_frame;
-
-// mappa
-typedef struct s_map
-{
-	char		**map;
-	t_vectors	player_pos;
-}	t_map;
-
 typedef struct s_vectors
 {
 	double	x;
 	double	y;
 }	t_vectors;
 
-// informazioni sul raggio
-typedef struct s_rayHit
+typedef struct s_map
 {
-    double distance;
-    int mapX;
-    int mapY;
-    double rayDirX;
-    double rayDirY;
-    int side;
-}	t_rayHit;
+	char		**map;
+	t_vectors	player_pos;
+}	t_map;
+
+
+typedef struct s_player
+{
+	t_vectors	pos;
+	t_vectors	dir;
+	t_vectors	mov_dir;
+	t_vectors	plane;
+	t_vectors	mov_speed;
+	double		rot_speed;
+	double		rot_dir;
+}	t_player;
+
+typedef struct s_ray
+{
+	t_vectors	draw_start;
+	t_vectors	draw_end;
+	t_vectors	side_dist;
+	t_vectors	delta_dist;
+	t_vectors	ray_dir;
+	double		perp_wall_dist;
+	double		camera_x;
+	int			side;
+	int			hit;
+	int			line_height;
+	int			step_x;
+	int			step_y;
+	int			map_x;
+	int			map_y;
+	int			color;
+}	t_ray;
 
 typedef struct s_game
 {
 	void			*mlx;
 	void			*mlx_win;
+	t_player		player;
+    t_map           map;
+	t_ray		ray;
 }	t_game;
+
+void	initialization(t_game *game);
+int     player_initialization(t_game *game);
+void	*null_error(char *message);
 
 #endif

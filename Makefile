@@ -6,13 +6,13 @@
 #    By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:46:42 by dcastagn          #+#    #+#              #
-#    Updated: 2023/06/30 12:36:59 by dcastagn         ###   ########.fr        #
+#    Updated: 2023/07/03 16:37:21 by dcastagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
 
-SRC		= $(wildcard gnl/*.c) $(wildcard *.c) $(wildcard errors/*.c)
+SRC		= $(wildcard gnl/*.c) $(wildcard *.c) $(wildcard errors/*.c) $(wildcard init/*.c)
 
 OBJ		= $(SRC:%.c=%.o)
 

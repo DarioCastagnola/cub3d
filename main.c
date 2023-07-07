@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/04 10:44:48 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:35:00 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	    null_error("Wrong Input!!");
 	ft_check_input(argv[1]);
+	printf("ciao\n");
+	printf("ciao1\n");
 	initialization(&game);
-	mlx_hook(game.mlx_win, 17, 0, ft_destroy_window, &game);
-	mlx_loop(game.mlx);
+	printf("ciao2\n");
 	player_initialization(&game);
+	printf("ciao3\n");
+	mlx_hook(game.mlx_win, 17, 0, ft_destroy_window, &game);
+	mlx_hook(game.mlx_win, 2, 1L<<0, key_hook, (void *)&game);
+	mlx_loop_hook(game.mlx, draw_frames, (void *)&game);
+	mlx_loop(game.mlx);
 }
-

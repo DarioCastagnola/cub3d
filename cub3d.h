@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/04 11:42:09 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:33:58 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 // passo di movimento e rotazione
 #define MOVSPEED 0.1
 #define ROTSPEED 0.05
+
+# define RGB_RED 0x00FF0000
+# define RGB_GREEN 0x0000FF00
+# define RGB_BLUE 0x000000FF
+# define RGB_YELLOW 0x00FFFF00
+# define RGB_WHITE 0x00FFFFFF
+# define RGB_DARK_GREY 0x00282828
 
 // ---------- STRUCTS
 
@@ -86,6 +93,8 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*mlx_win;
+	char			**readfile;
+	int				inimap;
 	t_player		player;
     t_map           map;
 	t_ray		ray;
@@ -94,5 +103,10 @@ typedef struct s_game
 void	initialization(t_game *game);
 int     player_initialization(t_game *game);
 void	*null_error(char *message);
+int	key_hook(int key, t_game *game);
+void	raycaster(t_game *game);
+int	draw_frames(t_game *game);
+
+
 
 #endif

@@ -6,103 +6,76 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:41:31 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/06/28 11:59:48 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:41:57 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl.h"
 
-char	*ft_free(char *buffer, char *buf)
+#include "../cub3d.h"
+
+char	*ft_temp_line(int fd, char *buffer, char *backup)
 {
+	int		r;
 	char	*temp;
 
-	temp = ft_strjoin(buffer, buf);
-	free(buffer);
-	return (temp);
+	r = 1;
+	while (r != '\0')
+	{
+		r = read(fd, buffer, 1);
+		if (r == -1)
+			return (0);
+		else if (r == 0)
+			break ;
+		buffer[r] = '\0';
+		if (!backup)
+			backup = ft_strdup("");
+		temp = backup;
+		backup = ft_strjoin(temp, buffer);
+		free(temp);
+		temp = NULL;
+		if (ft_strchr (buffer, '\n'))
+			break ;
+	}
+	return (backup);
+}
+
+char	*ft_backup(char *line)
+{
+	size_t	i;
+	char	*backup;
+
+	i = 0;
+	while (line[i] != '\n' && line[i])
+		i++;
+	if (line[i] == '\0' || line[1] == '\0')
+		return (0);
+	backup = ft_substr(line, i + 1, ft_strlen(line) - i);
+	if (*backup == '\0')
+	{
+		free(backup);
+		backup = NULL;
+	}
+	line[i + 1] = '\0';
+	return (backup);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*backup;
 	char		*line;
+	char		*buffer;
+	static char	*backup;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
-	backup = read_file(fd, backup);
-	if (!backup)
-		return (NULL);
-	line = ft_line(backup);
-	backup = ft_next(backup);
-	return (line);
-}
-
-char	*read_file(int fd, char *res)
-{
-	char	*buffer;
-	int		byte_read;
-
-	if (!res)
-		res = ft_calloc(1, 1);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	byte_read = 1;
-	while (byte_read > 0)
-	{
-		byte_read = read(fd, buffer, BUFFER_SIZE);
-		if (byte_read == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		buffer[byte_read] = 0;
-		res = ft_free(res, buffer);
-		if (ft_strchr(buffer, '\n'))
-			break ;
-	}
+	if (fd < 0)
+		return (0);
+	buffer = (char *)malloc(sizeof(char) * (1 + 1));
+	if (!buffer)
+		return (0);
+	line = ft_temp_line(fd, buffer, backup);
 	free(buffer);
-	return (res);
-}
-
-char	*ft_line(char *buffer)
-{
-	char	*line;
-	int		i;
-
-	i = 0;
-	if (!buffer[i])
+	buffer = NULL;
+	if (!line)
 		return (NULL);
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	line = ft_calloc(i + 2, sizeof(char));
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-	{
-		line[i] = buffer[i];
-		i++;
-	}
-	if (buffer[i] && buffer[i] == '\n')
-		line[i++] = 0;
-	return (line);
-}
-
-char	*ft_next(char *buffer)
-{
-	int		i;
-	int		j;
-	char	*line;
-
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	if (!buffer[i])
-	{
-		free(buffer);
-		return (NULL);
-	}
-	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
-	i++;
-	j = 0;
-	while (buffer[i])
-		line[j++] = buffer[i++];
-	free(buffer);
+	backup = ft_backup(line);
 	return (line);
 }

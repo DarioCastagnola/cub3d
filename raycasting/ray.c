@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:06:29 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 12:44:29 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:19:16 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,24 @@ void	calculate_side_dist_and_step(t_game *game)
 
 void  perform_dda(t_game *game)
 {
-  while(game->ray.hit == 0)
-  {
-    if(game->ray.side_dist.x < game->ray.side_dist.y)
-    {
-      game->ray.side_dist.x += game->ray.delta_dist.x;
-      game->ray.map_x += game->ray.step_x;
-      game->ray.side = 0;
-    }
-    else
-    {
-    game->ray.side_dist.y += game->ray.delta_dist.y;
-    game->ray.map_y += game->ray.step_y;
-    game->ray.side = 1;
-    }
+	while(game->ray.hit == 0)
+  	{
+    	if(game->ray.side_dist.x < game->ray.side_dist.y)
+    	{
+      	game->ray.side_dist.x += game->ray.delta_dist.x;
+      	game->ray.map_x += game->ray.step_x;
+      	game->ray.side = 0;
+    	}
+    	else
+    	{
+    	game->ray.side_dist.y += game->ray.delta_dist.y;
+		//printf("%f\n", game->ray.delta_dist.y);
+    	game->ray.map_y += game->ray.step_y;
+    	game->ray.side = 1;
+    	}
         //Check if ray has hit a wall
-    if (game->map.map[game->ray.map_x][game->ray.map_y] > 0)
-    game->ray.hit = 1;
+		if (game->themap[game->ray.map_y][game->ray.map_x] != 0)
+			game->ray.hit = 1;
     }
 }
 
@@ -132,11 +133,11 @@ void	raycaster(t_game *game)
 	x = -1;
 	while (++x < SCREEN_H)
 	{
-		printf("giuseppe\n");
 		initialization_raycasting(game, x);
 		calculate_side_dist_and_step(game);
 		perform_dda(game);
 		wall_view(game);
 		draw_texture(game, x);
+		draw_line_on(game->data.img, game->ray.draw_start, game->ray.delta_dist, game->ray.color);
 	}
 }

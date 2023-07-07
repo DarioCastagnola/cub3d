@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 12:24:36 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:16:56 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ typedef struct s_vectors
 	double	y;
 }	t_vectors;
 
-typedef struct s_map
+typedef struct s_data 
 {
-	char		**map;
-	t_vectors	player_pos;
-}	t_map;
-
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 
 typedef struct s_player
 {
@@ -89,6 +91,7 @@ typedef struct s_ray
 	int			color;
 }	t_ray;
 
+
 typedef struct s_game
 {
 	char			**themap;
@@ -99,8 +102,8 @@ typedef struct s_game
 	char			**readmap;
 	int				inimap;
 	t_player		player;
-    t_map           map;
 	t_ray			ray;
+	t_data			data;
 }	t_game;
 
 void	initialization(t_game *game, char *file);
@@ -109,6 +112,7 @@ void	*null_error(char *message);
 int		key_hook(int key, t_game *game);
 void	raycaster(t_game *game);
 int		draw_frames(t_game *game);
+void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
 
 //Map related functions
 
@@ -116,8 +120,5 @@ void	ft_print_mat(char **mat);
 void	ft_map(t_game *game);
 char	**ft_readmap(t_game *game, char *path);
 void	ft_check_size(t_game *game, char *path);
-
-
-
 
 #endif

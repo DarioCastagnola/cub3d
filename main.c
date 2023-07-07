@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 12:43:58 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:14:29 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	main(int argc, char **argv)
 	printf("ciao3\n");
 	mlx_hook(game.mlx_win, 17, 0, ft_destroy_window, &game);
 	mlx_hook(game.mlx_win, 2, 1L<<0, key_hook, (void *)&game);
+	game.data.img = mlx_new_image(game.mlx, SCREEN_W, SCREEN_H);
+	game.data.addr = mlx_get_data_addr(game.data.img, &game.data.bits_per_pixel, &game.data.line_length, &game.data.endian);
 	mlx_loop_hook(game.mlx, draw_frames, (void *)&game);
 	mlx_loop(game.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 10:35:00 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:43:58 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ int	main(int argc, char **argv)
 	ft_check_input(argv[1]);
 	printf("ciao\n");
 	printf("ciao1\n");
-	initialization(&game);
+	initialization(&game, argv[1]);
+	ft_check_size(&game, argv[1]);
+	game.readmap = ft_readmap(&game, argv[1]);
 	printf("ciao2\n");
+	ft_map(&game);
 	player_initialization(&game);
 	printf("ciao3\n");
 	mlx_hook(game.mlx_win, 17, 0, ft_destroy_window, &game);

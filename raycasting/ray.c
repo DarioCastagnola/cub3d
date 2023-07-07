@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:06:29 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/06 16:42:16 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:44:29 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	raycaster(t_game *game)
 	x = -1;
 	while (++x < SCREEN_H)
 	{
+		printf("giuseppe\n");
 		initialization_raycasting(game, x);
 		calculate_side_dist_and_step(game);
 		perform_dda(game);

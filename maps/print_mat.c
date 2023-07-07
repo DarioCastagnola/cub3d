@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_frames.c                                      :+:      :+:    :+:   */
+/*   print_mat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 12:45:15 by dcastagn         ###   ########.fr       */
+/*   Created: 2023/06/30 14:15:02 by lde-mich          #+#    #+#             */
+/*   Updated: 2023/07/07 12:32:43 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	draw_frames(t_game *game)
+void	ft_print_mat(char **mat)
 {
-	mlx_clear_window(game->mlx, game->mlx_win);
-	raycaster(game);
-    usleep(8000);
-	return (0);
+    int y;
+    int x;
+
+	y = 0;
+	while (mat[y])
+	{
+		x = 0;
+		while (mat[y][x])
+		{
+			write(1, &mat[y][x], 1);
+			x++;
+		}
+		y++;
+		write(1, "\n", 1);
+	}
 }

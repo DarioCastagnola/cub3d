@@ -6,19 +6,19 @@
 #    By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/28 11:46:42 by dcastagn          #+#    #+#              #
-#    Updated: 2023/07/07 10:17:54 by dcastagn         ###   ########.fr        #
+#    Updated: 2023/07/07 14:25:30 by dcastagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
 
-SRC		= $(wildcard gnl/*.c) $(wildcard *.c) $(wildcard errors/*.c) $(wildcard init/*.c) $(wildcard player/*.c) $(wildcard raycasting/*.c) $(wildcard visuals/*.c)
+SRC		= $(wildcard gnl/*.c) $(wildcard *.c) $(wildcard errors/*.c) $(wildcard init/*.c) $(wildcard player/*.c) $(wildcard raycasting/*.c) $(wildcard visuals/*.c) $(wildcard maps/*.c)
 
 OBJ		= $(SRC:%.c=%.o)
 
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
-RM		= rm
+RM		= rm -f
 
 RED		= \033[0;31m
 GREEN	= \033[0;32m

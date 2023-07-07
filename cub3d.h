@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 10:33:58 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:24:36 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,32 @@ typedef struct s_ray
 
 typedef struct s_game
 {
+	char			**themap;
+	int				y;
+	int				x;
 	void			*mlx;
 	void			*mlx_win;
-	char			**readfile;
+	char			**readmap;
 	int				inimap;
 	t_player		player;
     t_map           map;
-	t_ray		ray;
+	t_ray			ray;
 }	t_game;
 
-void	initialization(t_game *game);
+void	initialization(t_game *game, char *file);
 int     player_initialization(t_game *game);
 void	*null_error(char *message);
-int	key_hook(int key, t_game *game);
+int		key_hook(int key, t_game *game);
 void	raycaster(t_game *game);
-int	draw_frames(t_game *game);
+int		draw_frames(t_game *game);
+
+//Map related functions
+
+void	ft_print_mat(char **mat);
+void	ft_map(t_game *game);
+char	**ft_readmap(t_game *game, char *path);
+void	ft_check_size(t_game *game, char *path);
+
 
 
 

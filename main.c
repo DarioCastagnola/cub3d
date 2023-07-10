@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 16:14:29 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:37:53 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,14 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	    null_error("Wrong Input!!");
 	ft_check_input(argv[1]);
-	printf("ciao\n");
-	printf("ciao1\n");
 	initialization(&game, argv[1]);
 	ft_check_size(&game, argv[1]);
 	game.readmap = ft_readmap(&game, argv[1]);
-	printf("ciao2\n");
 	ft_map(&game);
 	player_initialization(&game);
-	printf("ciao3\n");
 	mlx_hook(game.mlx_win, 17, 0, ft_destroy_window, &game);
-	mlx_hook(game.mlx_win, 2, 1L<<0, key_hook, (void *)&game);
+	mlx_hook(game.mlx_win, 2, 1L<<0, key_hook_press, (void *)&game);
+	mlx_hook(game.mlx_win, 3, 1L<<1, key_hook_release, (void *)&game);
 	game.data.img = mlx_new_image(game.mlx, SCREEN_W, SCREEN_H);
 	game.data.addr = mlx_get_data_addr(game.data.img, &game.data.bits_per_pixel, &game.data.line_length, &game.data.endian);
 	mlx_loop_hook(game.mlx, draw_frames, (void *)&game);

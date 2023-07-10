@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:32:03 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 12:43:16 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:21:44 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,8 @@ void	startingpov(t_game *game)
 
 int player_initialization(t_game *game)
 {
-	ft_print_mat(game->themap);
-	printf("sasasasasas\n");
+	//ft_print_mat(game->themap);
 	find_player(game);
-	printf("sasasasasas\n");
 	game->player.dir.x = 0.0;
 	game->player.dir.y = 0.0;
 	game->player.plane.x = 0.0;
@@ -100,7 +98,6 @@ int player_initialization(t_game *game)
 	game->player.mov_dir.y = 0;
 	game->player.rot_dir = 0;
 	startingpov(game);
-	printf("ci siamo\n");
 	game->themap[(int)game->player.pos.y][(int)game->player.pos.x] = 0;
 	if (ft_multiplayer_inmap(game) == 1)
 		null_error("Too Many Players");

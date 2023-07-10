@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:06:29 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 16:19:16 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:15:11 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,21 @@ void  perform_dda(t_game *game)
 void  wall_view(t_game  *game)
 {
       if (game->ray.side == 0)
+	  {
         game->ray.perp_wall_dist = (game->ray.side_dist.x - game->ray.delta_dist.x);
+	  }
       else
+	  {
         game->ray.perp_wall_dist = (game->ray.side_dist.y - game->ray.delta_dist.y);
+	  }
       game->ray.line_height = (int)(SCREEN_H / game->ray.perp_wall_dist);
       game->ray.draw_start.y = -game->ray.line_height / 2 + SCREEN_H / 2;
-      if(game->ray.draw_start.y < 0) 
+      if (game->ray.draw_start.y < 0)
+	  { 
         game->ray.draw_start.y = 0;
+	  }
       game->ray.draw_end.y = game->ray.line_height / 2 + SCREEN_H / 2;
-      if(game->ray.draw_end.y >= SCREEN_H)
+      if (game->ray.draw_end.y >= SCREEN_H)
         game->ray.draw_end.y = SCREEN_H - 1;
 }
 
@@ -124,6 +130,7 @@ void	draw_texture(t_game *game, int x)
 		colors[2] = RGB_RED;
 		colors[3] = RGB_YELLOW;
 		game->ray.color %= 4;
+		draw_line_on(game->data.img, game->ray.draw_start, game->ray.draw_end, colors[game->ray.color]);
 }
 
 void	raycaster(t_game *game)
@@ -138,6 +145,5 @@ void	raycaster(t_game *game)
 		perform_dda(game);
 		wall_view(game);
 		draw_texture(game, x);
-		draw_line_on(game->data.img, game->ray.draw_start, game->ray.delta_dist, game->ray.color);
 	}
 }

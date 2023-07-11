@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:15:02 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/07 12:32:43 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:48:55 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_print_mat(char **mat)
 	while (mat[y])
 	{
 		x = 0;
+		(void)x;
 		while (mat[y][x])
 		{
 			write(1, &mat[y][x], 1);

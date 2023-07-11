@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:04:26 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/07 12:24:51 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:50:02 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_map(t_game *game)
 	ft_inimap(game);
 	game->themap = (char **)malloc((game->y + 1) * sizeof(char *));
 	y = game->inimap;
+	printf("%d\n", game->inimap);
 	j = 0;
 	while (game->readmap[y])
 	{
@@ -93,5 +94,5 @@ void	ft_map(t_game *game)
 		j++;
 		y++;
 	}
-	
+	game->themap[j] = 0;
 }

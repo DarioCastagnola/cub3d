@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/10 10:34:31 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:50:54 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		key_hook_press(int key, t_game *game);
 int		key_hook_release(int key, t_game *game);
 void	raycaster(t_game *game);
 int		draw_frames(t_game *game);
-void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
+void	draw_line_on(t_game *game, t_vectors begin, t_vectors end, int color);
 
 //Map related functions
 

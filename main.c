@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/10 10:37:53 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:47:33 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 
+	game.themap = 0;
 	if (argc != 2)
 	    null_error("Wrong Input!!");
 	ft_check_input(argv[1]);
-	initialization(&game, argv[1]);
 	ft_check_size(&game, argv[1]);
+	initialization(&game, argv[1]);
 	game.readmap = ft_readmap(&game, argv[1]);
 	ft_map(&game);
 	player_initialization(&game);

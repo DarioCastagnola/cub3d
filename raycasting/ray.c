@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:06:29 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/11 12:49:24 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:18:11 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 
 void    initialization_raycasting(t_game *game, int x)
 {
-    game->ray.camera_x = 2.0 * (double)x / (double)SCREEN_W - 1;
+	game->ray.camera_x = 2.0 * (double)x / (double)SCREEN_W - 1;
 	game->ray.ray_dir.x = game->player.dir.x
 		+ game->player.plane.x * game->ray.camera_x;
 	game->ray.ray_dir.y = game->player.dir.y
 		+ game->player.plane.y * game->ray.camera_x;
 	game->ray.map_x = (int)game->player.pos.x;
 	game->ray.map_y = (int)game->player.pos.y;
-	if (game->ray.ray_dir.x == 0)
-    	game->ray.delta_dist.x = 1e30;
-	else
-    	game->ray.delta_dist.x = fabs(1 / game->ray.ray_dir.x);
-	if (game->ray.ray_dir.y == 0)
-    	game->ray.delta_dist.y = 1e30;
-	else
-    	game->ray.delta_dist.y = fabs(1 / game->ray.ray_dir.y);
+	game->ray.delta_dist.x = 1e30;
+	game->ray.delta_dist.y = 1e30;
+	if (game->ray.ray_dir.x)
+		game->ray.delta_dist.x = fabs(1 / game->ray.ray_dir.x);
+	if (game->ray.ray_dir.y)
+		game->ray.delta_dist.y = fabs(1 / game->ray.ray_dir.y);
 	game->ray.hit = 0;
 	game->ray.draw_start.x = x;
 	game->ray.draw_end.x = x;
@@ -62,52 +60,44 @@ void	calculate_side_dist_and_step(t_game *game)
 	}
 }
 
+
 void  perform_dda(t_game *game)
 {
-	while(game->ray.hit == 0)
-  	{
-    	if(game->ray.side_dist.x < game->ray.side_dist.y)
-    	{
-      	game->ray.side_dist.x += game->ray.delta_dist.x;
-      	game->ray.map_x += game->ray.step_x;
-      	game->ray.side = 0;
-    	}
-    	else
-    	{
-    	game->ray.side_dist.y += game->ray.delta_dist.y;
-		//printf("%f\n", game->ray.delta_dist.y);
-    	game->ray.map_y += game->ray.step_y;
-    	game->ray.side = 1;
-    	}
-        //Check if ray has hit a wall
-		if (game->themap[game->ray.map_y][game->ray.map_x] != 0)
+	while (game->ray.hit == 0)
+	{
+		if (game->ray.side_dist.x < game->ray.side_dist.y)
+		{
+			game->ray.side_dist.x += game->ray.delta_dist.x;
+			game->ray.map_x += game->ray.step_x;
+			game->ray.side = 0;
+		}
+		else
+		{
+			game->ray.side_dist.y += game->ray.delta_dist.y;
+			game->ray.map_y += game->ray.step_y;
+			game->ray.side = 1;
+		}
+		if (game->themap[game->ray.map_y][game->ray.map_x] == '1'
+			|| game->themap[game->ray.map_y][game->ray.map_x] == 'D')
 			game->ray.hit = 1;
-    }
+	}
 }
 
-void  wall_view(t_game  *game)
+void  get_line_size(t_game  *game)
 {
-    if (game->ray.side == 0)
-	  {
-        game->ray.perp_wall_dist = (game->ray.side_dist.x - game->ray.delta_dist.x);
-	  }
-      else
-	  {
-        game->ray.perp_wall_dist = (game->ray.side_dist.y - game->ray.delta_dist.y);
-		printf(" perpwalldist %f\n", game->ray.perp_wall_dist);
-		printf(" sidedisty %f\n", game->ray.side_dist.y);
-		printf(" deltadisty %f\n", game->ray.delta_dist.y);
-	  }
-      game->ray.line_height = (int)(SCREEN_H / game->ray.perp_wall_dist);
-	  printf(" line height %d\n", game->ray.line_height);
-      game->ray.draw_start.y = -game->ray.line_height / 2 + SCREEN_H / 2;
-      if (game->ray.draw_start.y < 0)
-	  { 
-        game->ray.draw_start.y = 0;
-	  }
-      game->ray.draw_end.y = game->ray.line_height / 2 + SCREEN_H / 2;
-      if (game->ray.draw_end.y >= SCREEN_H)
-        game->ray.draw_end.y = SCREEN_H - 1;
+	if (game->ray.side == 0)
+		game->ray.perp_wall_dist = (game->ray.side_dist.x
+				- game->ray.delta_dist.x);
+	else
+		game->ray.perp_wall_dist = (game->ray.side_dist.y
+				- game->ray.delta_dist.y);
+	game->ray.line_height = (int)(SCREEN_H / game->ray.perp_wall_dist);
+	game->ray.draw_start.y = -game->ray.line_height / 2 + SCREEN_H / 2;
+	if (game->ray.draw_start.y < 0)
+		game->ray.draw_start.y = 0;
+	game->ray.draw_end.y = game->ray.line_height / 2 + SCREEN_H / 2;
+	if (game->ray.draw_end.y >= SCREEN_H)
+		game->ray.draw_end.y = SCREEN_H - 1;
 }
 
 void	select_texture(t_game *game)
@@ -136,7 +126,7 @@ void	draw_texture(t_game *game, int x)
 	colors[3] = RGB_YELLOW;
 	if (game->ray.side == 1)
 		game->ray.color = game->ray.color / 2;
-	draw_line_on(game->data.img, game->ray.draw_start, game->ray.draw_end, colors[0]);
+	draw_line_on(&game->data, game->ray.draw_start, game->ray.draw_end, colors[0]);
 }
 
 void	raycaster(t_game *game)
@@ -144,12 +134,12 @@ void	raycaster(t_game *game)
 	int		x;
 
 	x = -1;
-	while (++x < SCREEN_H)
+	while (++x < SCREEN_W)
 	{
 		initialization_raycasting(game, x);
 		calculate_side_dist_and_step(game);
 		perform_dda(game);
-		wall_view(game);
+		get_line_size(game);
 		draw_texture(game, x);
 	}
 }

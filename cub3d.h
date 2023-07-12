@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/11 10:50:54 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:27:44 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdint.h>
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 # include "gnl/gnl.h"
 # include <fcntl.h>
 # include <math.h>
 # include <time.h>
+# include <sys/time.h>
 
 // risoluzione
 #define SCREEN_W 640
@@ -101,19 +103,27 @@ typedef struct s_game
 	void			*mlx_win;
 	char			**readmap;
 	int				inimap;
+	double			frame_time;
+	int				fps;
+	u_int64_t		time;
+	u_int64_t		old_time;
 	t_player		player;
 	t_ray			ray;
 	t_data			data;
 }	t_game;
 
-void	initialization(t_game *game, char *file);
+void	ft_sleep(u_int64_t time);
+int	start_game(t_game *game);
+void	init_game(t_game *game);
+u_int64_t	get_time(void);
 int     player_initialization(t_game *game);
+void	update_inputs(t_game *game);
 void	*null_error(char *message);
 int		key_hook_press(int key, t_game *game);
 int		key_hook_release(int key, t_game *game);
 void	raycaster(t_game *game);
 int		draw_frames(t_game *game);
-void	draw_line_on(t_game *game, t_vectors begin, t_vectors end, int color);
+void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
 
 //Map related functions
 

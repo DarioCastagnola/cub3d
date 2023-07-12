@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/11 11:58:09 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:26:38 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_line_on(t_game *game, t_vectors begin, t_vectors end, int color)
+void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 {
 	double	dx;
 	double	dy;
@@ -29,17 +29,16 @@ void	draw_line_on(t_game *game, t_vectors begin, t_vectors end, int color)
 	double	py;
 	int		pixels;
 
-	dx = end.x - (int)begin.x;
-	dy = end.y - (int)begin.y;
-	pixels = sqrt((dx * dx) + (dy * dy));
+	dx = end.x - begin.x;
+	dy = end.y - begin.y;
+	pixels = sqrt((dx * dx) + (dy * dy)) + 1;
 	dx /= pixels;
 	dy /= pixels;
-	px = (int)begin.x;
-	py = (int)begin.y;
+	px = begin.x;
+	py = begin.y;
 	while (pixels)
 	{
-		printf("%f %f\n\n", px, py);
-		my_mlx_pixel_put(game->data.img, (int)px, (int)py, color);
+		my_mlx_pixel_put(img, (int)px, (int)py, color);
 		px += dx;
 		py += dy;
 		--pixels;
@@ -51,6 +50,6 @@ int	draw_frames(t_game *game)
 	mlx_clear_window(game->mlx, game->mlx_win);
 	raycaster(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->data.img, 0, 0);
-    usleep(8000);
+	update_inputs(game);	
 	return (0);
 }

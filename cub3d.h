@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/12 14:27:44 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:09:23 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 #define MOVSPEED 0.1
 #define ROTSPEED 0.05
 
-# define RGB_RED 0x00FF0000
+# define RGB_RED 0x00FFA0A0
 # define RGB_GREEN 0x0000FF00
 # define RGB_BLUE 0x000000FF
 # define RGB_YELLOW 0x00FFFF00

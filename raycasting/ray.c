@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:06:29 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/12 14:18:11 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:04:29 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ void    initialization_raycasting(t_game *game, int x)
 	game->ray.delta_dist.x = 1e30;
 	game->ray.delta_dist.y = 1e30;
 	if (game->ray.ray_dir.x)
-		game->ray.delta_dist.x = fabs(1 / game->ray.ray_dir.x);
+		game->ray.delta_dist.x = fabs(1.0f / game->ray.ray_dir.x);
 	if (game->ray.ray_dir.y)
-		game->ray.delta_dist.y = fabs(1 / game->ray.ray_dir.y);
+		game->ray.delta_dist.y = fabs(1.0f / game->ray.ray_dir.y);
+	// printf("begin x = %f\n", game->ray.side_dist.x);
+	// printf("begin deltax = %f\n", game->ray.delta_dist.x);
+	// // printf("begin y = %f\n", game->ray.side_dist.y);
+	// printf("begin deltay = %f\n", game->ray.delta_dist.y);
+	//exit(1);
 	game->ray.hit = 0;
 	game->ray.draw_start.x = x;
 	game->ray.draw_end.x = x;
@@ -76,6 +81,8 @@ void  perform_dda(t_game *game)
 			game->ray.side_dist.y += game->ray.delta_dist.y;
 			game->ray.map_y += game->ray.step_y;
 			game->ray.side = 1;
+			// printf("begin y = %f\n", game->ray.side_dist.y);
+			// printf("begin deltay = %f\n", game->ray.delta_dist.y);
 		}
 		if (game->themap[game->ray.map_y][game->ray.map_x] == '1'
 			|| game->themap[game->ray.map_y][game->ray.map_x] == 'D')
@@ -126,6 +133,8 @@ void	draw_texture(t_game *game, int x)
 	colors[3] = RGB_YELLOW;
 	if (game->ray.side == 1)
 		game->ray.color = game->ray.color / 2;
+	// printf("begin x = %f\n", game->ray.draw_start.x);
+	// printf("begin y = %f\n", game->ray.draw_start.y);
 	draw_line_on(&game->data, game->ray.draw_start, game->ray.draw_end, colors[0]);
 }
 

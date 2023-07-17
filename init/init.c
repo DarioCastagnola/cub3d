@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:32:03 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/12 14:00:39 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:03:50 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	find_player(t_game *game)
 		{
 			if (ft_strchr("NSWE", game->themap[y][x]))
 			{
-				game->player.pos.x = x;
-				game->player.pos.y = y;
+				game->player.pos.x = x + 0.5f;
+				game->player.pos.y = y + 0.5f;
 				return (1);
 			}
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:32:03 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 10:21:35 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:14:02 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	startingpov(t_game *game)
 	}
 }
 
-int player_initialization(t_game *game)
+int	player_initialization(t_game *game)
 {
 	find_player(game);
 	game->player.dir.x = 0.0;

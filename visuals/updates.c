@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   updates.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:22:36 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 10:08:31 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:41:52 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	update_time(t_game *game)
 
 void	update_inputs(t_game *game)
 {
-    update_time(game);
+	update_time(game);
 	game->player.mov_speed.x = game->frame_time * 3.0;
 	game->player.mov_speed.y = game->frame_time * 3.0;
 	game->player.rot_speed = game->frame_time * 2.0;

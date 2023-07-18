@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 10:06:13 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:23:38 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,21 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	double	dx;
+	double	dy;
+	double	px;
+	double	py;
+	int		pixels;
 }	t_data;
+
+typedef struct s_mini 
+{
+	int		width;
+	int		height;
+	int		y;
+	int		x;
+	t_data	data;
+}	t_mini;
 
 typedef struct s_player
 {
@@ -114,11 +128,7 @@ typedef struct parser
 
 typedef struct s_game
 {
-	// char			**themap;
-	// int				y;
-	// int				x;
-	// char			**readmap;
-	// int				inimap;
+
 	void			*mlx;
 	void			*mlx_win;
 	double			frame_time;
@@ -129,6 +139,7 @@ typedef struct s_game
 	t_ray			ray;
 	t_data			data;
 	t_parser		parser;
+	t_mini			mini;
 }	t_game;
 
 
@@ -152,17 +163,19 @@ void	ft_check_rgb(int y, t_parser *parser);
 
 //TEMP RAYCASTING
 
-void	ft_sleep(u_int64_t time);
-int	start_game(t_game *game);
-void	init_game(t_game *game);
+void		ft_sleep(u_int64_t time);
+int			start_game(t_game *game);
+void		init_game(t_game *game);
 u_int64_t	get_time(void);
-int     player_initialization(t_game *game);
-void	update_inputs(t_game *game);
-void	*null_error(char *message);
-int		key_hook_press(int key, t_game *game);
-int		key_hook_release(int key, t_game *game);
-void	raycaster(t_game *game);
-int		draw_frames(t_game *game);
-void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
+int			player_initialization(t_game *game);
+void		update_inputs(t_game *game);
+void		*null_error(char *message);
+int			key_hook_press(int key, t_game *game);
+int			key_hook_release(int key, t_game *game);
+void		raycaster(t_game *game);
+int			draw_frames(t_game *game);
+void		draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
+void	draw_rect_on(t_data *img, t_vectors begin, t_vectors end, int color);
+void	draw_minimap_back_and_player(t_game *game);
 
 #endif

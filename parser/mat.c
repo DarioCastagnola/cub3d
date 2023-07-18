@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:04:26 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/17 16:08:13 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:13:08 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	**ft_readmap(t_parser *parser, char *path)
 	{
 		if (l[ft_strlen(l) - 1] == '\n')
 			l[ft_strlen(l) - 1] = 0;
-		mat[j] = l;                                                                                                                                       
+		mat[j] = l;
 		l = get_next_line(fd);
 		j++;
 	}

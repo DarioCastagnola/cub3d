@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:32:03 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/17 12:08:29 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:21:35 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	find_player(t_game *game)
 	int	x;
 
 	y = -1;
-	while (game->themap[++y])
+	while (game->parser.map[++y])
 	{
 		x = -1;
-		while (game->themap[y][++x])
+		while (game->parser.map[y][++x])
 		{
-			if (ft_strchr("NSWE", game->themap[y][x]))
+			if (ft_strchr("NSWE", game->parser.map[y][x]))
 			{
 				game->player.pos.x = x + 0.5f;
 				game->player.pos.y = y + 0.5f;
@@ -38,7 +38,7 @@ void	startingpov(t_game *game)
 {
 	char	dir;
 
-	dir = game->themap[(int)game->player.pos.y][
+	dir = game->parser.map[(int)game->player.pos.y][
 		(int)game->player.pos.x];
 	if (dir == 'N')
 	{
@@ -73,7 +73,7 @@ int player_initialization(t_game *game)
 	game->player.mov_dir.y = 0;
 	game->player.rot_dir = 0;
 	startingpov(game);
-	game->themap[(int)game->player.pos.y][(int)game->player.pos.x] = '0';
+	game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x] = '0';
 	return (0);
 }
 

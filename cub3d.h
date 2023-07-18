@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/17 12:09:23 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:06:13 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 # include <stdint.h>
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
-# include "gnl/gnl.h"
+# include "gnl/get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
 # include <time.h>
 # include <sys/time.h>
 
 // risoluzione
-#define SCREEN_W 640
-#define SCREEN_H 480
+#define SCREEN_W 1920
+#define SCREEN_H 1080
 
 // Field Of View
 #define FOV 0.66
@@ -93,16 +93,34 @@ typedef struct s_ray
 	int			color;
 }	t_ray;
 
+//PARSER
+
+typedef struct parser
+{
+	char	**readmap;
+	char	**map;
+	int		inimap;
+	int		inidata;
+	int		x;
+	int		y;
+	int		mwidth;
+	int		mheight;
+	int		f[3];
+	int		c[3];
+
+}		t_parser;
+
+//GAME
 
 typedef struct s_game
 {
-	char			**themap;
-	int				y;
-	int				x;
+	// char			**themap;
+	// int				y;
+	// int				x;
+	// char			**readmap;
+	// int				inimap;
 	void			*mlx;
 	void			*mlx_win;
-	char			**readmap;
-	int				inimap;
 	double			frame_time;
 	int				fps;
 	u_int64_t		time;
@@ -110,7 +128,29 @@ typedef struct s_game
 	t_player		player;
 	t_ray			ray;
 	t_data			data;
+	t_parser		parser;
 }	t_game;
+
+
+//TEMP PARSER
+
+char	**ft_readmap(t_parser *parser, char *path);
+void	ft_map(t_parser *parser);
+void	ft_print_mat(char **mat);
+void	ft_free_mat(char **mat);
+void	ft_free_err(t_parser *parser, char *s);
+void	ft_inimap(t_parser *parser);
+void	ft_inidata(t_parser *parser);
+void	ft_size_map(t_parser *parser);
+void	ft_check_texture(t_parser *parser);
+void	ft_check_size(t_parser *parser, char *path);
+void	ft_check_fc(t_parser *parser);
+void	ft_check_map(t_parser *parser);
+void	ft_check_lmap(t_parser *parser);
+void	ft_check_symbol_map(t_parser *parser);
+void	ft_check_rgb(int y, t_parser *parser);
+
+//TEMP RAYCASTING
 
 void	ft_sleep(u_int64_t time);
 int	start_game(t_game *game);
@@ -124,12 +164,5 @@ int		key_hook_release(int key, t_game *game);
 void	raycaster(t_game *game);
 int		draw_frames(t_game *game);
 void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
-
-//Map related functions
-
-void	ft_print_mat(char **mat);
-void	ft_map(t_game *game);
-char	**ft_readmap(t_game *game, char *path);
-void	ft_check_size(t_game *game, char *path);
 
 #endif

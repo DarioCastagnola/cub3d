@@ -3,16 +3,28 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+         #
+#    By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/28 11:46:42 by dcastagn          #+#    #+#              #
-#    Updated: 2023/07/07 14:25:30 by dcastagn         ###   ########.fr        #
+#    Created: 2023/02/06 15:20:41 by lde-mich          #+#    #+#              #
+#    Updated: 2023/07/18 09:38:18 by lde-mich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= cub3D
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/28 11:46:42 by dcastagn          #+#    #+#              #
+#    Updated: 2023/06/30 12:36:59 by dcastagn         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC		= $(wildcard gnl/*.c) $(wildcard *.c) $(wildcard errors/*.c) $(wildcard init/*.c) $(wildcard player/*.c) $(wildcard raycasting/*.c) $(wildcard visuals/*.c) $(wildcard maps/*.c)
+NAME	= cub3d
+
+SRC		= $(wildcard gnl/*.c) $(wildcard parser/*.c) $(wildcard init/*.c) $(wildcard player/*.c) $(wildcard raycasting/*.c) $(wildcard visuals/*.c) $(wildcard maps/*.c) $(wildcard *.c)
 
 OBJ		= $(SRC:%.c=%.o)
 

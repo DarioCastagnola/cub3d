@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.h                                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 11:57:55 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/07 10:42:14 by dcastagn         ###   ########.fr       */
+/*   Created: 2023/02/07 09:08:35 by lde-mich          #+#    #+#             */
+/*   Updated: 2023/07/06 11:36:37 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
-# define BUFFER_SIZE 1
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <math.h>
-# include <time.h>
-# include <stdint.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdarg.h>
+# include <fcntl.h>
 
 char		*get_next_line(int fd);
 char		*ft_backup(char *line);
 char		*ft_temp_line(int fd, char *buffer, char *backup);
+
 #endif

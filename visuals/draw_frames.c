@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_frames.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/17 12:08:58 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:30:02 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 	py = 0;
 	while (begin.y > py)
 	{
-		my_mlx_pixel_put(img, (int)px, (int)py, RGB_RED);
+		my_mlx_pixel_put(img, (int)px, (int)py, RGB_DARK_GREY);
 		py += dy;
 	}
 	while (pixels)
@@ -54,7 +54,7 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 	}
 	while (py < SCREEN_H)
 	{
-		my_mlx_pixel_put(img, (int)px, (int)py, RGB_RED);
+		my_mlx_pixel_put(img, (int)px, (int)py, RGB_DARK_GREY);
 		py += dy;
 	}	
 }

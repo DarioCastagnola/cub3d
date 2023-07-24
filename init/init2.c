@@ -6,35 +6,50 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/24 14:40:55 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:16:27 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+void	draw_square(t_data *img, t_vectors start, int side, int color)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < side)
+	{
+		x = -1;
+		while (++x < side)
+			my_mlx_pixel_put(img, x + start.x, y + start.y, color);
+	}
+}
+
 void draw_minimap(t_game *game)
 {
-    int cell_width = MINIMAP_SIZE / game->parser.mwidth;
-    int cell_height = MINIMAP_SIZE / game->parser.mheight;
-    int y = -1;
+	int			x;
+	int			y;
+	t_vectors	start;
 
-    while (++y < game->parser.mheight)
-    {
-        int x = -1;
-        while (++x < game->parser.mwidth)
-        {
-            int cell_type = game->parser.map[y][x];
-            int rect_x = x * cell_width;
-            int rect_y = y * cell_height;
-            int color = 0x000000; //nero
-            if (cell_type == '1')
-                color = 0xFFFFFF; //bianco
-            mlx_string_put(game->mlx, game->mlx_win, rect_x + 10, rect_y + 10, color, "1");
-        }
-    }
-    int player_minimap_x = game->player.pos.x * MINIMAP_SCALE;
-    int player_minimap_y = game->player.pos.y * MINIMAP_SCALE;
-    mlx_string_put(game->mlx, game->mlx_win, player_minimap_x, player_minimap_y + 100, 0xFF0000, "X");}
+	y = -1;
+	while (game->parser.map[++y])
+	{
+		x = -1;
+		while (game->parser.map[y][++x])
+		{
+			start.x = x * MINIMAP_SCALE;
+			start.y = y * MINIMAP_SCALE;
+			if (game->parser.map[y][x] == '1')
+				draw_square(&game->mini.data, start, MINIMAP_SCALE, 0x00FFFFFF);
+			else
+				draw_square(&game->mini.data, start, MINIMAP_SCALE, 0x00000000);
+		}
+	}
+	start.x = (game->player.pos.x * MINIMAP_SCALE);
+	start.y = (game->player.pos.y * MINIMAP_SCALE) - 2;
+	draw_square(&game->mini.data, start, 5, 0x00FF0000);
+}
 
 void	init_minimap(t_game *game)
 {

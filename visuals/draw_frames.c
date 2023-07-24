@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 14:51:39 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:03:06 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,13 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 	}
 }
 
-void	draw_rect_on(t_data *img, t_vectors begin, t_vectors end, int color)
-{
-	t_vectors	tmp;
-
-	tmp.x = end.x;
-	tmp.y = begin.y - 1;
-	while (++tmp.y < (end.y + 1))
-	{
-		draw_line_on(img, begin, tmp, color);
-		++begin.y;
-	}
-}
-
 int	draw_frames(t_game *game)
 {
 	raycaster(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->data.img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->mini.data.img,
+		game->mini.x, game->mini.y);
+	draw_minimap(game);
 	update_inputs(game);
 	return (0);
 }

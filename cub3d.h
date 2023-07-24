@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 14:23:38 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:59:21 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@
 // passo di movimento e rotazione
 #define MOVSPEED 0.1
 #define ROTSPEED 0.05
+
+// Dimensioni della minimappa
+#define MINIMAP_SIZE 200
+#define MINIMAP_SCALE 4
 
 # define RGB_RED 0x00FFA0A0
 # define RGB_GREEN 0x0000FF00
@@ -165,6 +169,8 @@ void	ft_check_rgb(int y, t_parser *parser);
 
 void		ft_sleep(u_int64_t time);
 int			start_game(t_game *game);
+void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
+void	draw_minimap(t_game	*game);
 void		init_game(t_game *game);
 u_int64_t	get_time(void);
 int			player_initialization(t_game *game);

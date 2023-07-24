@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 10:28:11 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:40:00 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_check_input(char *s)
 int	ft_destroy_window(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->mlx_win);
-	exit(write(2, "Error: The evil forces reign on\n", 25));
+	ft_free_err(&game->parser, "Error: The evil forces reign on\n");
+	return (1);
 }
 
 int	main(int argc, char **argv)

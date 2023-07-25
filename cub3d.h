@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/24 15:18:25 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:05:36 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 #define ROTSPEED 0.05
 
 // Dimensioni della minimappa
-#define MINIMAP_SIZE 200
 #define MINIMAP_SCALE 15
 
 # define RGB_RED 0x00FFA0A0

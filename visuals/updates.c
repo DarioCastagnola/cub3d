@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:22:36 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/24 16:51:17 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:40:55 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	update_time(t_game *game)
 	}
 	curr_fps = ft_itoa(game->fps);
 	mlx_string_put(game->mlx, game->mlx_win,
-		20, 20, -1, curr_fps);
+		SCREEN_W - 20, 20, -1, curr_fps);
 	free(curr_fps);
 }
 

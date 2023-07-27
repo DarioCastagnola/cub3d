@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/24 16:08:30 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:32:28 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void draw_minimap(t_game *game)
 
 void	init_minimap(t_game *game)
 {
-	game->mini.width = game->parser.mwidth * 15;
-	game->mini.height = game->parser.mheight * 25;
+	game->mini.width = game->parser.mwidth * 10;
+	game->mini.height = game->parser.mheight * 10;
 	game->mini.x = 0;
 	game->mini.y = 0;
 	game->mini.data.img = mlx_new_image(game->mlx, game->mini.width,

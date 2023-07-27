@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/27 10:44:29 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:28:11 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@
 # include <sys/time.h>
 
 // risoluzione
-#define SCREEN_W 1920
-#define SCREEN_H 1080
+// #define SCREEN_W 1920
+// #define SCREEN_H 1080
+#define SCREEN_W 800
+#define SCREEN_H 520
 
 // Field Of View
 #define FOV 0.66
@@ -40,7 +42,7 @@
 #define ROTSPEED 0.05
 
 // Dimensioni della minimappa
-#define MINIMAP_SCALE 10
+#define MINIMAP_SCALE (int)(SCREEN_W / 100)
 
 # define RGB_RED 0x00FFA0A0
 # define RGB_GREEN 0x0000FF00

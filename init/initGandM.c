@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/27 10:32:28 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:12:03 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ void draw_minimap(t_game *game)
 
 void	init_minimap(t_game *game)
 {
-	game->mini.width = game->parser.mwidth * 10;
-	game->mini.height = game->parser.mheight * 10;
+	game->mini.width = game->parser.mwidth * MINIMAP_SCALE;
+	game->mini.height = game->parser.mheight * MINIMAP_SCALE;
+	printf("w = %d\n", game->mini.width);
+	printf("h = %d\n", game->mini.height);
 	game->mini.x = 0;
 	game->mini.y = 0;
 	game->mini.data.img = mlx_new_image(game->mlx, game->mini.width,

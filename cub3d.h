@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/27 10:04:02 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:54:08 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@
 #define ROTSPEED 0.05
 
 // Dimensioni della minimappa
-#define MINIMAP_SIZE 200
-#define MINIMAP_SCALE 10
 
+#define MINIMAP_SCALE (int)(SCREEN_W / 100)
 # define RGB_RED 0x00FFA0A0
 # define RGB_GREEN 0x0000FF00
 # define RGB_BLUE 0x000000FF

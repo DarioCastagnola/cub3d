@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/17 11:41:38 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/27 09:55:50 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	ft_check_rgb(int y, t_parser *parser)
 			ft_free_err(parser, "Error\nRgb not supported\n");
 		i++;
 	}
+	if (i != 3)
+		ft_free_err(parser, "Error\nRgb not supported\n");
 	ft_free_mat(temp);
 	ft_free_mat(temp1);
 }
@@ -80,27 +82,21 @@ void	ft_check_fc(t_parser *parser)
 	}
 }
 
-void	ft_check_texture(t_parser *parser)
+void	ft_check_texture(t_parser *parser, t_game *game)
 {
-	int		x;
 	int		y;
-	int		count;
-	char	*temp;
+	char	**temp;
 
 	y = 0;
 	temp = NULL;
-	count = 0;
-	while (parser->readmap[y] && count < 4)
+	while (parser->readmap[y] && y < 4)
 	{
-		x = 0;
-		while (parser->readmap[y][x] == 32)
-			x++;
-		temp = ft_substr(parser->readmap[y], x, 2);
-		if (ft_strncmp(temp, "NO", 2) && ft_strncmp(temp, "SO", 2)
-			&& ft_strncmp(temp, "WE", 2) && ft_strncmp(temp, "EA", 2))
-			ft_free_err(parser, "Error\nTexture not supported\n");
-		count++;
-		free(temp);
+		temp = ft_split(parser->readmap[y], 32);
+		ft_load_image(game, temp);
+		ft_free_mat(temp);
 		y++;
 	}
+	if (!game->no_wall.img || !game->so_wall.img || !game->ea_wall.img
+		|| !game->we_wall.img)
+		ft_free_err(parser, "Error: image not found\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:15:02 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/24 14:07:18 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/25 11:44:03 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_print_mat(char **mat)
 {
-	int	y;
-	int	x;
+    int y;
+    int x;
 
 	y = 0;
 	while (mat[y])

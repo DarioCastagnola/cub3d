@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initGandM.c                                        :+:      :+:    :+:   */
+/*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/27 11:12:03 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:05:14 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,20 @@ void draw_minimap(t_game *game)
 			start.x = x * MINIMAP_SCALE;
 			start.y = y * MINIMAP_SCALE;
 			if (game->parser.map[y][x] == '1')
-				draw_square(&game->mini.data, start, MINIMAP_SCALE, 0x00FFFFFF);
+				draw_square(&game->mini.data, start, MINIMAP_SCALE, 0x00FFFFFF); 
 			else
 				draw_square(&game->mini.data, start, MINIMAP_SCALE, 0x00000000);
 		}
 	}
 	start.x = (game->player.pos.x * MINIMAP_SCALE);
 	start.y = (game->player.pos.y * MINIMAP_SCALE) - 2;
-	draw_square(&game->mini.data, start, MINIMAP_SCALE / 4, 0x00FF0000);
+	draw_square(&game->mini.data, start, 5, 0x00FF0000);
 }
 
 void	init_minimap(t_game *game)
 {
-	game->mini.width = game->parser.mwidth * MINIMAP_SCALE;
-	game->mini.height = game->parser.mheight * MINIMAP_SCALE;
-	printf("w = %d\n", game->mini.width);
-	printf("h = %d\n", game->mini.height);
+	game->mini.width = game->parser.mwidth * 15;
+	game->mini.height = game->parser.mheight * 25;
 	game->mini.x = 0;
 	game->mini.y = 0;
 	game->mini.data.img = mlx_new_image(game->mlx, game->mini.width,
@@ -68,7 +66,7 @@ void	init_minimap(t_game *game)
 
 void	init_game(t_game *game)
 {
-	game->mlx = mlx_init();
+	// game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	game->data.img = mlx_new_image(game->mlx, SCREEN_W, SCREEN_H);
 	game->data.addr = mlx_get_data_addr(game->data.img,

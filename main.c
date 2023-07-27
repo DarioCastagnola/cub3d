@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/21 15:40:00 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:23:49 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	t_game		game;
 	t_parser	parser;
 
+	game.mlx = mlx_init();
 	parser.map = NULL;
 	parser.readmap = NULL;
 	if (argc != 2)
@@ -44,7 +45,7 @@ int	main(int argc, char **argv)
 	ft_map(&parser);
 	ft_size_map(&parser);
 	ft_check_fc(&parser);
-	ft_check_texture(&parser);
+	ft_check_texture(&parser, &game);
 	ft_check_lmap(&parser);
 	ft_check_map(&parser);
 	ft_check_symbol_map(&parser);

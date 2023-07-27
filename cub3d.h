@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/27 11:28:11 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:04:02 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@
 # include <sys/time.h>
 
 // risoluzione
-// #define SCREEN_W 1920
-// #define SCREEN_H 1080
-#define SCREEN_W 800
-#define SCREEN_H 520
+#define SCREEN_W 1920
+#define SCREEN_H 1080
 
 // Field Of View
 #define FOV 0.66
@@ -42,7 +40,8 @@
 #define ROTSPEED 0.05
 
 // Dimensioni della minimappa
-#define MINIMAP_SCALE (int)(SCREEN_W / 100)
+#define MINIMAP_SIZE 200
+#define MINIMAP_SCALE 10
 
 # define RGB_RED 0x00FFA0A0
 # define RGB_GREEN 0x0000FF00
@@ -50,6 +49,8 @@
 # define RGB_YELLOW 0x00FFFF00
 # define RGB_WHITE 0x00FFFFFF
 # define RGB_DARK_GREY 0x00282828
+# define RGB_FLOOR 0x00228B22
+# define RGB_SKY 0x00E0FFFF
 
 // ---------- STRUCTS
 
@@ -81,6 +82,18 @@ typedef struct s_mini
 	int		x;
 	t_data	data;
 }	t_mini;
+
+typedef struct s_img
+{
+	void	*img;
+	void	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		ll;
+	int		endian;
+
+}	t_img;
 
 typedef struct s_player
 {
@@ -144,6 +157,10 @@ typedef struct s_game
 	t_ray			ray;
 	t_data			data;
 	t_parser		parser;
+	t_img			no_wall;
+	t_img			so_wall;
+	t_img			ea_wall;
+	t_img			we_wall;
 	t_mini			mini;
 }	t_game;
 
@@ -158,13 +175,14 @@ void	ft_free_err(t_parser *parser, char *s);
 void	ft_inimap(t_parser *parser);
 void	ft_inidata(t_parser *parser);
 void	ft_size_map(t_parser *parser);
-void	ft_check_texture(t_parser *parser);
+void	ft_check_texture(t_parser *parser, t_game *game);
 void	ft_check_size(t_parser *parser, char *path);
 void	ft_check_fc(t_parser *parser);
 void	ft_check_map(t_parser *parser);
 void	ft_check_lmap(t_parser *parser);
 void	ft_check_symbol_map(t_parser *parser);
 void	ft_check_rgb(int y, t_parser *parser);
+void	ft_load_image(t_game *game, char **temp);
 
 //TEMP RAYCASTING
 

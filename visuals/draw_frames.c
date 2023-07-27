@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_frames.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/24 16:03:37 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/25 14:56:49 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 	img->py = 0;
 	while (begin.y > img->py)
 	{
-		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_DARK_GREY);
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_SKY);
 		img->py += img->dy;
 	}
 	while (img->pixels)
@@ -44,7 +44,7 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 	}
 	while (img->py < SCREEN_H)
 	{
-		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_DARK_GREY);
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_FLOOR);
 		img->py += img->dy;
 	}
 }
@@ -52,10 +52,10 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 int	draw_frames(t_game *game)
 {
 	raycaster(game);
-	draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->data.img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->mini.data.img,
 		game->mini.x, game->mini.y);
+	draw_minimap(game);
 	update_inputs(game);
 	return (0);
 }

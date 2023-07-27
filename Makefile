@@ -6,7 +6,7 @@
 #    By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 15:20:41 by lde-mich          #+#    #+#              #
-#    Updated: 2023/07/18 09:38:18 by lde-mich         ###   ########.fr        #
+#    Updated: 2023/07/25 11:50:49 by lde-mich         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@
 
 NAME	= cub3d
 
-SRC		= $(wildcard gnl/*.c) $(wildcard parser/*.c) $(wildcard init/*.c) $(wildcard player/*.c) $(wildcard raycasting/*.c) $(wildcard visuals/*.c) $(wildcard maps/*.c) $(wildcard *.c)
+SRC		= $(wildcard gnl/*.c) $(wildcard parser/*.c) $(wildcard init/*.c) $(wildcard player/*.c) $(wildcard raycasting/*.c) $(wildcard visuals/*.c) $(wildcard maps/*.c) $(wildcard texture/*.c) $(wildcard *.c)
 
 OBJ		= $(SRC:%.c=%.o)
 

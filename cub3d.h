@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/27 12:11:42 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:52:38 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 # include <sys/time.h>
 
 // risoluzione
-#define SCREEN_W 2560
-#define SCREEN_H 1440
+#define SCREEN_W 1920
+#define SCREEN_H 1080
+#define TEXTURES 1
 
 // Field Of View
 #define FOV 0.66
@@ -156,10 +157,12 @@ typedef struct s_game
 	t_ray			ray;
 	t_data			data;
 	t_parser		parser;
+	t_img			walls[4];
 	t_img			no_wall;
 	t_img			so_wall;
 	t_img			ea_wall;
 	t_img			we_wall;
+	t_data			screen;
 	t_mini			mini;
 }	t_game;
 
@@ -197,6 +200,7 @@ void		*null_error(char *message);
 int			key_hook_press(int key, t_game *game);
 int			key_hook_release(int key, t_game *game);
 void		raycaster(t_game *game);
+void	draw_texture(t_game *game, int x);
 int			draw_frames(t_game *game);
 void		draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
 void	draw_rect_on(t_data *img, t_vectors begin, t_vectors end, int color);

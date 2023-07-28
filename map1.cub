@@ -1,7 +1,8 @@
-NO ./maps/greystone.xpm
-SO ./maps/greystone.xpm
-WE ./maps/greystone.xpm
-EA ./maps/greystone.xpm
+
+NO ./maps/bluestone.xpm
+SO ./maps/bluestone.xpm
+WE ./maps/bluestone.xpm
+EA ./maps/bluestone.xpm
 
 F 220,100,0
 C 225,30,0

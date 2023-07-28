@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/27 09:55:50 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:41:17 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ void	ft_inidata(t_parser *parser)
 	while (parser->readmap[y] && count <= 4)
 	{
 		if (parser->readmap[y] && parser->readmap[y][0] != 0)
-		{
 			count++;
-			y++;
-		}
-		else
-			y++;
+		y++;
 	}
 	parser->inidata = y - 1;
 }
@@ -85,16 +81,26 @@ void	ft_check_fc(t_parser *parser)
 void	ft_check_texture(t_parser *parser, t_game *game)
 {
 	int		y;
+	int		i;
 	char	**temp;
+	int		count;
 
-	y = 0;
+	y = -1;
+	count = 0;
 	temp = NULL;
-	while (parser->readmap[y] && y < 4)
+	while (parser->readmap[++y] && count < 4)
 	{
+		if (!parser->readmap[y] || !parser->readmap[y][0])
+			continue ;
 		temp = ft_split(parser->readmap[y], 32);
+		i = -1;
+		while (temp[++i])
+			;
+		if (i != 2)
+			ft_free_err(parser, "Error: image not found\n");
 		ft_load_image(game, temp);
 		ft_free_mat(temp);
-		y++;
+		count++;
 	}
 	if (!game->no_wall.img || !game->so_wall.img || !game->ea_wall.img
 		|| !game->we_wall.img)

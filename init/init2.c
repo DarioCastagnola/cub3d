@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/27 16:17:38 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:11:03 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void draw_minimap(t_game *game)
 	}
 	start.x = (game->player.pos.x * MINIMAP_SCALE);
 	start.y = (game->player.pos.y * MINIMAP_SCALE) - 2;
-	draw_square(&game->mini.data, start, 5, 0x00FF0000);
+	draw_square(&game->mini.data, start, MINIMAP_SCALE / 2, 0x00FF0000);
 }
 
 void	init_minimap(t_game *game)
 {
-	game->mini.width = game->parser.mwidth * 15;
-	game->mini.height = game->parser.mheight * 25;
+	game->mini.width = game->parser.mwidth * MINIMAP_SCALE;
+	game->mini.height = game->parser.mheight * MINIMAP_SCALE;
 	game->mini.x = 0;
 	game->mini.y = 0;
 	game->mini.data.img = mlx_new_image(game->mlx, game->mini.width,
@@ -66,6 +66,7 @@ void	init_minimap(t_game *game)
 
 void	init_game(t_game *game)
 {
+	// game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	game->data.img = mlx_new_image(game->mlx, SCREEN_W, SCREEN_H);
 	game->data.addr = mlx_get_data_addr(game->data.img,

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/28 15:52:38 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:46:47 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,10 +200,9 @@ void		*null_error(char *message);
 int			key_hook_press(int key, t_game *game);
 int			key_hook_release(int key, t_game *game);
 void		raycaster(t_game *game);
-void	draw_texture(t_game *game, int x);
+void		draw_texture(t_game *game, int x);
 int			draw_frames(t_game *game);
 void		draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
-void	draw_rect_on(t_data *img, t_vectors begin, t_vectors end, int color);
-void	draw_minimap_back_and_player(t_game *game);
+void		draw_background(t_data *img, t_vectors begin, t_vectors end);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:15:09 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/28 16:32:39 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:47:51 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void    render_texture(t_game *game, int x)
     step = 1.0 * game->walls[game->ray.color].width / game->ray.line_height;
     texPos = (game->ray.draw_start.y - SCREEN_H / 2 + game->ray.line_height / 2) * step;
     y = game->ray.draw_start.y - 1;
+	draw_background(&game->data, game->ray.draw_start, game->ray.draw_end);
     while (++y < game->ray.draw_end.y)
     {
         // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
@@ -89,12 +90,15 @@ void	draw_texture(t_game *game, int x)
 	int	colors[4];
 
 	select_texture(game);
-	colors[0] = RGB_BLUE;
-	colors[1] = RGB_GREEN;
-	colors[2] = RGB_RED;
-	colors[3] = RGB_YELLOW;
-	draw_line_on(&game->data, game->ray.draw_start,
-		game->ray.draw_end, colors[game->ray.color]);
 	if (TEXTURES)
 		render_texture(game, x);
+	else
+	{
+		colors[0] = RGB_BLUE;
+		colors[1] = RGB_GREEN;
+		colors[2] = RGB_RED;
+		colors[3] = RGB_YELLOW;
+		draw_line_on(&game->data, game->ray.draw_start,
+		game->ray.draw_end, colors[game->ray.color]);
+	}
 }

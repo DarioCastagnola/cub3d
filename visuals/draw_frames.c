@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/28 16:22:22 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:46:36 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,33 @@ void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
 	dst = img->addr
 		+ (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+void	draw_background(t_data *img, t_vectors begin, t_vectors end)
+{
+	img->dx = end.x - begin.x;
+	img->dy = end.y - begin.y;
+	img->pixels = sqrt((img->dx * img->dx) + (img->dy * img->dy)) + 1;
+	img->dx /= img->pixels;
+	img->dy /= img->pixels;
+	img->px = begin.x;
+	img->py = 0;
+	while (begin.y > img->py)
+	{
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_SKY);
+		img->py += img->dy;
+	}
+	while (img->pixels)
+	{
+		img->px += img->dx;
+		img->py += img->dy;
+		--img->pixels;
+	}
+	while (img->py < SCREEN_H)
+	{
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_FLOOR);
+		img->py += img->dy;
+	}
 }
 
 void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)

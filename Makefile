@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+         #
+#    By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 15:20:41 by lde-mich          #+#    #+#              #
-#    Updated: 2023/07/25 11:50:49 by lde-mich         ###   ########.fr        #
+#    Updated: 2023/07/27 14:36:16 by dcastagn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ $(NAME): $(OBJ)
 	@make -C libft > /dev/null
 	@make -C minilibx-linux > /dev/null 2>&1
 	@$(CC) $(FLAGS) $(OBJ) -L ./libft -lft -L ./minilibx-linux -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+	@printf "$(BLUE)-------------------------------------------------------------------------\n$(RESET)"
 	@printf "$(GREEN)cub3d initialized\n$(RESET)"
 	@printf "$(BLUE)-------------------------------------------------------------------------\n$(RESET)"
 
@@ -67,7 +68,7 @@ fclean: clean
 	@printf "$(RED)\nRemoving program executable...\n$(RESET)"
 	@printf "$(BLUE)-------------------------------------------------------------------------\n$(RESET)"
 	@$(RM) $(NAME)
-	@printf "$(RED)Cub3d removed\n$(RESET)"
+	@printf "$(RED)cub3d removed\n$(RESET)"
 
 	
 re: fclean all

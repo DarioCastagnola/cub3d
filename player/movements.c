@@ -6,11 +6,30 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:21:01 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 16:47:47 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:06:39 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	ft_mouse(int x, int y, void *param)
+{
+	t_game	*game;
+
+	game = (t_game *) param;
+	(void) y;
+	mlx_mouse_hide(game->mlx, game->mlx_win);
+	if (x > game->x)
+		game->player.rot_dir = 1;
+	if (x < game->x)
+		game->player.rot_dir = -1;
+	if (game->x == x || (((game->x + 5) > x) && (game->x - 5) < x))
+		game->player.rot_dir = 0;
+	game->x = x;
+	if (game->x < 20 || game->x > SCREEN_W - 20)
+		game->x = SCREEN_W / 2;
+	return (0);
+}
 
 int	key_hook_press(int key, t_game *game)
 {

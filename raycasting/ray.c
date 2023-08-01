@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 11:06:29 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 15:01:06 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:07:24 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,34 +97,6 @@ void	get_line_size(t_game *game)
 	game->ray.draw_end.y = game->ray.line_height / 2 + SCREEN_H / 2;
 	if (game->ray.draw_end.y >= SCREEN_H)
 		game->ray.draw_end.y = SCREEN_H - 1;
-}
-
-void	select_texture(t_game *game)
-{
-	if (game->ray.side == 1 && game->player.pos.y <= game->ray.map_y)
-		game->ray.color = 0;
-	else if (game->ray.side == 1)
-		game->ray.color = 1;
-	else if (game->ray.side == 0 && game->player.pos.x <= game->ray.map_x)
-		game->ray.color = 2;
-	else if (game->ray.side == 0)
-		game->ray.color = 3;
-	else
-		game->ray.color = 0;
-}
-
-void	draw_texture(t_game *game, int x)
-{
-	int	colors[4];
-
-	(void)x;
-	select_texture(game);
-	colors[0] = RGB_BLUE;
-	colors[1] = RGB_GREEN;
-	colors[2] = RGB_RED;
-	colors[3] = RGB_YELLOW;
-	draw_line_on(&game->data, game->ray.draw_start,
-		game->ray.draw_end, colors[game->ray.color]);
 }
 
 void	raycaster(t_game *game)

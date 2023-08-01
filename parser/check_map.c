@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:45:56 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/17 15:54:45 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/08/01 12:12:20 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	ft_check_map(t_parser *parser)
 				if (parser->map[y - 1][x] == 32 || parser->map[y + 1][x] == 32
 					|| parser->map[y][x - 1] == 32
 					|| parser->map[y][x + 1] == 32)
-				ft_free_err(parser, "Error\nnot surrounded by wall\n");
+					ft_free_err(parser, "Error\nnot surrounded by wall\n");
 				else if (!parser->map[y - 1][x] || !parser->map[y + 1][x]
 					|| !parser->map[y][x + 1] || !parser->map[y][x - 1])
-				ft_free_err(parser, "Error\nnot surrounded by wall\n");
+					ft_free_err(parser, "Error\nnot surrounded by wall\n");
 			}
 			x++;
 		}
@@ -55,7 +55,7 @@ void	ft_check_lmap(t_parser *parser)
 	y = parser->mheight - 1;
 	x = 0;
 	while (parser->map[y][x])
-	{	
+	{
 		if (parser->map[y][x] == '0')
 			ft_free_err(parser, "Error\nnot surrounded by wall\n");
 		x++;
@@ -77,7 +77,7 @@ void	ft_check_symbol_map(t_parser *parser)
 				|| parser->map[y][x] == 78 || parser->map[y][x] == 83
 				|| parser->map[y][x] == 69 || parser->map[y][x] == 87
 				|| parser->map[y][x] == 32))
-			ft_free_err(parser, "Error\nSymbol not supported for the map\n");
+				ft_free_err(parser, "Error\nSymbol not supported for the map\n");
 			x++;
 		}
 		y++;

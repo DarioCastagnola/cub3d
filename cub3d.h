@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/31 12:46:47 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:37:41 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_game
 	void			*mlx_win;
 	double			frame_time;
 	int				fps;
+	int				x;
 	u_int64_t		time;
 	u_int64_t		old_time;
 	t_player		player;
@@ -158,10 +159,10 @@ typedef struct s_game
 	t_data			data;
 	t_parser		parser;
 	t_img			walls[4];
-	t_img			no_wall;
-	t_img			so_wall;
-	t_img			ea_wall;
-	t_img			we_wall;
+	int				mouse_x;
+	int				mouse_y;
+	int				screen_x;
+	int				screen_y;
 	t_data			screen;
 	t_mini			mini;
 }	t_game;
@@ -204,5 +205,6 @@ void		draw_texture(t_game *game, int x);
 int			draw_frames(t_game *game);
 void		draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
 void		draw_background(t_data *img, t_vectors begin, t_vectors end);
+int	ft_mouse(int x, int y, void *param);
 
 #endif

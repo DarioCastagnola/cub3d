@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/25 14:23:49 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:37:21 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 	mlx_hook(game.mlx_win, 17, 0, ft_destroy_window, &game);
 	mlx_hook(game.mlx_win, 2, 1L<<0, key_hook_press, (void *)&game);
 	mlx_hook(game.mlx_win, 3, 1L<<1, key_hook_release, (void *)&game);
+	mlx_hook(game.mlx_win, 6, 1L << 6, ft_mouse, (void *)&game);
 	mlx_loop_hook(game.mlx, draw_frames, (void *)&game);
 	mlx_loop(game.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/31 12:46:36 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:30:47 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,27 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 
 int	draw_frames(t_game *game)
 {
+	// static int	oldmouse;
+	// int mouse_diff;
 	raycaster(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->data.img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->mini.data.img,
 		game->mini.x, game->mini.y);
+	// mlx_mouse_hide(game->mlx, game->mlx_win);
+	// mlx_mouse_get_pos(game->mlx, game->mlx_win, &game->mouse_x, &game->mouse_y);
+	// printf("mouse x = %d\n", game->mouse_x);
+	// oldmouse = 0;
+	// mouse_diff = game->mouse_x - oldmouse;
+	// mlx_get_screen_size(game->mlx, &game->screen_x, &game->screen_y);
+	// printf("screen x = %d\n screen y = %d\n", game->screen_x, game->screen_y);
+	// printf("old mouse = %d\n", oldmouse);
+	// printf("diff = %d\n", mouse_diff);
+	// if (game->mouse_x < 1270)
+	// 	game->player.rot_dir = -1;
+	// if (game->mouse_x > 1270)
+	// 	game->player.rot_dir = 1;
+	// oldmouse = game->mouse_x;
+	// printf("rotdir = %f\n", game->player.rot_dir);
 	draw_minimap(game);
 	update_inputs(game);
 	return (0);

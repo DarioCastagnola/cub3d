@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/28 15:45:52 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:02:46 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	init_minimap(t_game *game)
 void	init_game(t_game *game)
 {
 	int i;
-	// game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	game->data.img = mlx_new_image(game->mlx, SCREEN_W, SCREEN_H);
 	game->data.addr = mlx_get_data_addr(game->data.img,

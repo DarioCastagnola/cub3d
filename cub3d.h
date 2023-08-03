@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/31 16:37:41 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:34:52 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define SCREEN_W 1920
 #define SCREEN_H 1080
 #define TEXTURES 1
+#define DOOR_FRAMES 2
 
 // Field Of View
 #define FOV 0.66
@@ -158,7 +159,8 @@ typedef struct s_game
 	t_ray			ray;
 	t_data			data;
 	t_parser		parser;
-	t_img			walls[4];
+	t_img			walls[10];
+	int				frames;
 	int				mouse_x;
 	int				mouse_y;
 	int				screen_x;

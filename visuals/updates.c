@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:22:36 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/31 13:35:04 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 12:13:25 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	update_time(t_game *game)
 	mlx_string_put(game->mlx, game->mlx_win,
 		SCREEN_W - 20, 20, -1, curr_fps);
 	free(curr_fps);
+	game->frames += 1;
 }
 
 void	update_inputs(t_game *game)

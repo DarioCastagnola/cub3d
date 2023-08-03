@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/01 12:15:17 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:12:16 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ void	ft_check_texture(t_parser *parser, t_game *game)
 	if (!game->walls[0].img || !game->walls[1].img || !game->walls[2].img
 		|| !game->walls[3].img)
 		ft_free_err(parser, "Error: image not found\n");
-	while (++i < 4)
+	if (!game->walls[4].img || !game->walls[5].img || !game->walls[6].img
+		|| !game->walls[9].img)
+		ft_free_err(parser, "Error: image not found\n");
+	while (++i < 10)
 	game->walls[i].addr = mlx_get_data_addr(game->walls[i].img,
 		&game->walls[i].bpp,&game->walls[i].ll,
 		&game->walls[i].endian);

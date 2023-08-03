@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:45:56 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/01 12:12:20 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 11:40:33 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_check_symbol_map(t_parser *parser)
 			if (!(parser->map[y][x] == 49 || parser->map[y][x] == 48
 				|| parser->map[y][x] == 78 || parser->map[y][x] == 83
 				|| parser->map[y][x] == 69 || parser->map[y][x] == 87
-				|| parser->map[y][x] == 32))
+				|| parser->map[y][x] == 32 || parser->map[y][x] == 'D'))
 				ft_free_err(parser, "Error\nSymbol not supported for the map\n");
 			x++;
 		}

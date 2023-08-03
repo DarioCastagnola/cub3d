@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:22:36 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/03 12:13:25 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:55:06 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_colliding(t_game *game, double y, double x)
 		return (0);
 	if (game->parser.map[(int)y][(int)x] == 'O')
 		return (0);
-	if (game->parser.map[(int)y][(int)x] == 'D')
+	if (game->parser.map[(int)y][(int)x] == 'd')
 		return (0);
 	return (1);
 }

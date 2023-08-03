@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:16:10 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/03 14:41:11 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:01:14 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_load_door_image(t_game *game)
 		"./maps/door/door_6.xpm", 
 		&game->walls[8].width, &game->walls[8].height);
 	game->walls[9].img = mlx_xpm_file_to_image(game->mlx,
-		"./maps/door/door_8.xpm", 
+		"./maps/door/door_7.xpm", 
 		&game->walls[9].width, &game->walls[9].height);
 }
 

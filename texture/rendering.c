@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:15:09 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/03 14:42:02 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:01:46 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,32 @@ void    render_texture(t_game *game, int x)
     }
 }
 
-void	select_texture(t_game *game)
+void	door_animation(t_game *game)
 {
-	if (game->parser.map[game->ray.map_y][game->ray.map_x] == 'D')
-	{
 		if (game->frames < (DOOR_FRAMES * 14))
 			game->ray.color = 4;	
 		else if (game->frames < (DOOR_FRAMES * 23))
-			game->ray.color = 6;
+			game->ray.color = 5;
 		else if (game->frames < (DOOR_FRAMES * 32))
+			game->ray.color = 6;
+		else if (game->frames < (DOOR_FRAMES * 41))
+			game->ray.color = 7;
+		else if (game->frames < (DOOR_FRAMES * 50))
 			game->ray.color = 8;
+		else if (game->frames < (DOOR_FRAMES * 59))
+			game->ray.color = 9;
 		else
 		{
 			game->ray.color = 1;
 			game->frames = 0;
 		}
+}
+
+void	select_texture(t_game *game)
+{
+	if (game->parser.map[game->ray.map_y][game->ray.map_x] == 'D')
+	{
+		door_animation(game);
 	}
 	else if (game->ray.side == 1 && game->player.pos.y <= game->ray.map_y)
 		game->ray.color = 0;

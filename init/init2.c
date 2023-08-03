@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/03 12:15:31 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:33:53 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	draw_minimap(t_game *game)
 					MINIMAP_SCALE, 0x00FFFFFF);
 			else if (game->parser.map[y][x] == 'D')
 				draw_square(&game->mini.data, start,
-					MINIMAP_SCALE, RGB_GREEN); 
+					MINIMAP_SCALE, RGB_GREEN);
+			else if (game->parser.map[y][x] == 'd')
+				draw_square(&game->mini.data, start,
+					MINIMAP_SCALE, RGB_BLUE); 
 			else
 				draw_square(&game->mini.data, start, MINIMAP_SCALE, 0x00000000);
 		}

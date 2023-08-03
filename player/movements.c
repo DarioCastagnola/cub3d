@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:21:01 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/01 12:06:39 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:55:08 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,26 @@ int	ft_mouse(int x, int y, void *param)
 	return (0);
 }
 
+void	door_mechanics(t_game *game)
+{
+	printf("ciao\n");
+	//if (game->ray.perp_wall_dist < 0.6f)
+	//{
+		if (game->parser.map[(int)game->player.pos.y - 1][(int)(game->player.pos.x)] == 'D')
+		{
+			printf("abra cadabra\n");
+			game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] = 'd';
+		}
+		else if (game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] == 'd')
+		{
+			game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] = 'D';
+			printf("The Door shall close, at least for you it will\n");
+		}
+	//}
+	printf("%c\n", game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x]);
+	printf("%f - %f\n", game->player.pos.x, game->player.pos.y);
+}
+
 int	key_hook_press(int key, t_game *game)
 {
 	if (key == 0 || key == 'a')
@@ -45,6 +65,8 @@ int	key_hook_press(int key, t_game *game)
 		game->player.rot_dir = -1;
 	else if (key == 65363)
 		game->player.rot_dir = 1;
+	else if (key == 32)
+		door_mechanics(game);
 	else if (key == 53 || key == 65307)
 		ft_free_err(&game->parser, "Shutdown\n");
 	return (0);

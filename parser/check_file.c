@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/03 11:12:16 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:32:29 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	ft_check_rgb(int y, t_parser *parser)
 	int		i;
 
 	temp = ft_split(parser->readmap[y], 32);
-	i = -1;
-	while (temp[++i])
-		temp1 = ft_split(temp[i], 44);
+	temp1 = ft_split(temp[1], 44);
 	i = 0;
 	while (temp1[i])
 	{
@@ -55,8 +53,8 @@ void	ft_check_rgb(int y, t_parser *parser)
 	}
 	if (i != 3)
 		ft_free_err(parser, "Error\nRgb not supported\n");
-	ft_free_mat(temp);
-	ft_free_mat(temp1);
+	ft_free_mat(&temp);
+	ft_free_mat(&temp1);
 }
 
 void	ft_check_fc(t_parser *parser)
@@ -95,9 +93,10 @@ void	ft_check_texture(t_parser *parser, t_game *game)
 	{
 		temp = ft_split(parser->readmap[y], 32);
 		ft_load_image(game, temp);
-		ft_free_mat(temp);
+		ft_free_mat(&temp);
 		y++;
 	}
+	ft_load_door_image(game);
 	if (!game->walls[0].img || !game->walls[1].img || !game->walls[2].img
 		|| !game->walls[3].img)
 		ft_free_err(parser, "Error: image not found\n");
@@ -108,5 +107,4 @@ void	ft_check_texture(t_parser *parser, t_game *game)
 	game->walls[i].addr = mlx_get_data_addr(game->walls[i].img,
 		&game->walls[i].bpp,&game->walls[i].ll,
 		&game->walls[i].endian);
-
 }

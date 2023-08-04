@@ -1,10 +1,10 @@
-NO ./maps/greystone.xpm
-SO ./maps/mossy.xpm
-WE ./maps/wood.xpm
-EA ./maps/colorstone.xpm
+NO ./maps/dcastagn.xpm
+SO ./maps/adi-stef.xpm
+WE ./maps/lde-mich.xpm
+EA ./maps/gpanico.xpm
 
-F 220,100,0
-C 225,30,0
+F 105,105,105
+C 240,230,140
 
         1111111111111111111111111
         100000000011000000000D001

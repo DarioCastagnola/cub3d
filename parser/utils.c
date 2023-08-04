@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:15:02 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/25 11:44:03 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:38:14 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,33 @@ void	ft_print_mat(char **mat)
 	}
 }
 
-void	ft_free_mat(char **mat)
+void	ft_free_mat(char ***mat)
 {
 	int	i;
 
 	i = -1;
-	if (!mat)
+	if (!(*mat))
 		return ;
-	while (mat[++i])
-		free(mat[i]);
-	free(mat);
-	mat = NULL;
+	while ((*mat)[++i])
+		free((*mat)[i]);
+	free(*mat);
+	*mat = NULL;
 }
 
 void	ft_free_err(t_parser *parser, char *s)
 {
-	ft_free_mat(parser->readmap);
-	ft_free_mat(parser->map);
+	int	i;
+
+	i = -1;
+	while (++i < 10)
+	{
+		if (parser->game->walls[i].img)
+		{
+			mlx_destroy_image(parser->game->mlx, parser->game->walls[i].img);
+		}
+	}
+	ft_free_mat(&parser->readmap);
+	ft_free_mat(&parser->map);
 	while (*s)
 		write(2, s++, 1);
 	exit(1);

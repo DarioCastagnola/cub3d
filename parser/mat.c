@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:04:26 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/07/17 16:08:13 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:44:33 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void	ft_check_size(t_parser *parser, char *path)
 	parser->y = 0;
 	while (l)
 	{
+		free(l);
 		l = get_next_line(fd);
 		parser->y++;
 	}
+	free(l);
 	close(fd);
 }
 

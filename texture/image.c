@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:16:10 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/04 14:38:20 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:24:34 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ void	ft_load_image(t_game *game, char **temp)
 	else if (!ft_strncmp(temp[0], "WE", 3))
 		game->walls[3].img = mlx_xpm_file_to_image(game->mlx,
 				temp[1], &game->walls[3].width, &game->walls[3].height);
-	ft_load_door_image(game);
 }

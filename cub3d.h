@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/04 14:44:56 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:23:12 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@
 # define RGB_SKY 0x00E0FFFF
 
 // ---------- STRUCTS
+
+// typedef	struct s_game;
 
 typedef struct s_vectors
 {
@@ -131,16 +133,17 @@ typedef struct s_ray
 
 typedef struct parser
 {
-	char	**readmap;
-	char	**map;
-	int		inimap;
-	int		inidata;
-	int		x;
-	int		y;
-	int		mwidth;
-	int		mheight;
-	int		f[3];
-	int		c[3];
+	char			**readmap;
+	char			**map;
+	int				inimap;
+	int				inidata;
+	int				x;
+	int				y;
+	int				mwidth;
+	int				mheight;
+	int				f[3];
+	int				c[3];
+	struct s_game	*game;
 
 }		t_parser;
 
@@ -176,7 +179,7 @@ typedef struct s_game
 char	**ft_readmap(t_parser *parser, char *path);
 void	ft_map(t_parser *parser);
 void	ft_print_mat(char **mat);
-void	ft_free_mat(char **mat);
+void	ft_free_mat(char ***mat);
 void	ft_free_err(t_parser *parser, char *s);
 void	ft_inimap(t_parser *parser);
 void	ft_inidata(t_parser *parser);
@@ -192,6 +195,7 @@ void	ft_load_image(t_game *game, char **temp);
 
 //TEMP RAYCASTING
 
+void	ft_load_door_image(t_game *game);
 void		ft_sleep(u_int64_t time);
 int			start_game(t_game *game);
 void	my_mlx_pixel_put(t_data *img, int x, int y, int color);

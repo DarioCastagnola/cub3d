@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:21:01 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/04 14:17:05 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:36:42 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	key_hook_press(int key, t_game *game)
 		game->player.rot_dir = 1;
 	else if (key == 32)
 		door_mechanics(game);
-	else if (key == 53 || key == 65307)
+	else if (key == 65307)
 		ft_free_err(&game->parser, "Shutdown\n");
 	return (0);
 }

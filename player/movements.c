@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:21:01 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/03 16:55:08 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:53:25 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ int	ft_mouse(int x, int y, void *param)
 
 void	door_mechanics(t_game *game)
 {
-	printf("ciao\n");
-	//if (game->ray.perp_wall_dist < 0.6f)
-	//{
 		if (game->parser.map[(int)game->player.pos.y - 1][(int)(game->player.pos.x)] == 'D')
-		{
-			printf("abra cadabra\n");
 			game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] = 'd';
-		}
+		else if (game->parser.map[(int)game->player.pos.y + 1][(int)(game->player.pos.x)] == 'D')
+			game->parser.map[(int)game->player.pos.y + 1][(int)game->player.pos.x] = 'd';
 		else if (game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] == 'd')
-		{
 			game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] = 'D';
-			printf("The Door shall close, at least for you it will\n");
-		}
-	//}
-	printf("%c\n", game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x]);
-	printf("%f - %f\n", game->player.pos.x, game->player.pos.y);
+		else if (game->parser.map[(int)game->player.pos.y + 1][(int)game->player.pos.x] == 'd')
+			game->parser.map[(int)game->player.pos.y + 1][(int)game->player.pos.x] = 'D';
+		else if (game->parser.map[(int)game->player.pos.y][(int)(game->player.pos.x - 1)] == 'D')
+			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x - 1] = 'd';
+		else if (game->parser.map[(int)game->player.pos.y][(int)(game->player.pos.x + 1)] == 'D')
+			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x + 1] = 'd';
+		else if (game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x - 1] == 'd')
+			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x - 1] = 'D';
+		else if (game->parser.map[(int)game->player.pos.y ][(int)game->player.pos.x + 1] == 'd')
+			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x + 1] = 'D';
 }
 
 int	key_hook_press(int key, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 10:21:01 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/04 10:53:25 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:17:05 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,45 @@ int	ft_mouse(int x, int y, void *param)
 	return (0);
 }
 
+void	door_mechanics2(t_game *game)
+{
+	if (game->parser.map[(int)game->player.pos.y]
+		[(int)(game->player.pos.x - 1)] == 'D')
+		game->parser.map[(int)game->player.pos.y]
+		[(int)game->player.pos.x - 1] = 'd';
+	else if (game->parser.map[(int)game->player.pos.y]
+		[(int)(game->player.pos.x + 1)] == 'D')
+		game->parser.map[(int)game->player.pos.y]
+		[(int)game->player.pos.x + 1] = 'd';
+	else if (game->parser.map[(int)game->player.pos.y]
+		[(int)game->player.pos.x - 1] == 'd')
+		game->parser.map[(int)game->player.pos.y]
+		[(int)game->player.pos.x - 1] = 'D';
+	else if (game->parser.map[(int)game->player.pos.y]
+		[(int)game->player.pos.x + 1] == 'd')
+		game->parser.map[(int)game->player.pos.y]
+		[(int)game->player.pos.x + 1] = 'D';
+}
+
 void	door_mechanics(t_game *game)
 {
-		if (game->parser.map[(int)game->player.pos.y - 1][(int)(game->player.pos.x)] == 'D')
-			game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] = 'd';
-		else if (game->parser.map[(int)game->player.pos.y + 1][(int)(game->player.pos.x)] == 'D')
-			game->parser.map[(int)game->player.pos.y + 1][(int)game->player.pos.x] = 'd';
-		else if (game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] == 'd')
-			game->parser.map[(int)game->player.pos.y - 1][(int)game->player.pos.x] = 'D';
-		else if (game->parser.map[(int)game->player.pos.y + 1][(int)game->player.pos.x] == 'd')
-			game->parser.map[(int)game->player.pos.y + 1][(int)game->player.pos.x] = 'D';
-		else if (game->parser.map[(int)game->player.pos.y][(int)(game->player.pos.x - 1)] == 'D')
-			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x - 1] = 'd';
-		else if (game->parser.map[(int)game->player.pos.y][(int)(game->player.pos.x + 1)] == 'D')
-			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x + 1] = 'd';
-		else if (game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x - 1] == 'd')
-			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x - 1] = 'D';
-		else if (game->parser.map[(int)game->player.pos.y ][(int)game->player.pos.x + 1] == 'd')
-			game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x + 1] = 'D';
+	if (game->parser.map[(int)game->player.pos.y - 1]
+		[(int)(game->player.pos.x)] == 'D')
+		game->parser.map[(int)game->player.pos.y - 1]
+		[(int)game->player.pos.x] = 'd';
+	else if (game->parser.map[(int)game->player.pos.y + 1]
+		[(int)(game->player.pos.x)] == 'D')
+		game->parser.map[(int)game->player.pos.y + 1]
+		[(int)game->player.pos.x] = 'd';
+	else if (game->parser.map[(int)game->player.pos.y - 1]
+		[(int)game->player.pos.x] == 'd')
+		game->parser.map[(int)game->player.pos.y - 1]
+		[(int)game->player.pos.x] = 'D';
+	else if (game->parser.map[(int)game->player.pos.y + 1]
+		[(int)game->player.pos.x] == 'd')
+		game->parser.map[(int)game->player.pos.y + 1]
+		[(int)game->player.pos.x] = 'D';
+	door_mechanics2(game);
 }
 
 int	key_hook_press(int key, t_game *game)

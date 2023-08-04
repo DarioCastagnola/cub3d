@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:15:09 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/03 15:01:46 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:26:00 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,48 +32,50 @@ int	get_texture_x(t_game *game)
 	return (tex_x);
 }
 
-void    render_texture(t_game *game, int x)
+void	render_texture(t_game *game, int x)
 {
-    double          step;
-    double          texPos;
-    int             y;
-    t_vectors       tex;
-    unsigned int    color;
+	double			step;
+	double			texpos;
+	int				y;
+	t_vectors		tex;
+	unsigned int	color;
 
-    tex.x = get_texture_x(game);
-    step = 1.0 * game->walls[game->ray.color].width / game->ray.line_height;
-    texPos = (game->ray.draw_start.y - SCREEN_H / 2 + game->ray.line_height / 2) * step;
-    y = game->ray.draw_start.y - 1;
+	tex.x = get_texture_x(game);
+	step = 1.0 * game->walls[game->ray.color].width / game->ray.line_height;
+	texpos = (game->ray.draw_start.y - SCREEN_H / 2
+			+ game->ray.line_height / 2) * step;
+	y = game->ray.draw_start.y - 1;
 	draw_background(&game->data, game->ray.draw_start, game->ray.draw_end);
-    while (++y < game->ray.draw_end.y)
-    {
-        tex.y = (int)texPos & (game->walls[game->ray.color].width - 1);
-        texPos += step;
-        color = *(unsigned int *)(game->walls[game->ray.color].addr
-				+ 4 * (game->walls[game->ray.color].width * (int)tex.y + (int)tex.x));
+	while (++y < game->ray.draw_end.y)
+	{
+		tex.y = (int)texpos & (game->walls[game->ray.color].width - 1);
+		texpos += step;
+		color = *(unsigned int *)(game->walls[game->ray.color].addr
+				+ 4 * (game->walls[game->ray.color].width
+					* (int)tex.y + (int)tex.x));
 		my_mlx_pixel_put(&game->data, x, y, color);
-    }
+	}
 }
 
 void	door_animation(t_game *game)
 {
-		if (game->frames < (DOOR_FRAMES * 14))
-			game->ray.color = 4;	
-		else if (game->frames < (DOOR_FRAMES * 23))
-			game->ray.color = 5;
-		else if (game->frames < (DOOR_FRAMES * 32))
-			game->ray.color = 6;
-		else if (game->frames < (DOOR_FRAMES * 41))
-			game->ray.color = 7;
-		else if (game->frames < (DOOR_FRAMES * 50))
-			game->ray.color = 8;
-		else if (game->frames < (DOOR_FRAMES * 59))
-			game->ray.color = 9;
-		else
-		{
-			game->ray.color = 1;
-			game->frames = 0;
-		}
+	if (game->frames < (DOOR_FRAMES * 14))
+		game->ray.color = 4;
+	else if (game->frames < (DOOR_FRAMES * 23))
+		game->ray.color = 5;
+	else if (game->frames < (DOOR_FRAMES * 32))
+		game->ray.color = 6;
+	else if (game->frames < (DOOR_FRAMES * 41))
+		game->ray.color = 7;
+	else if (game->frames < (DOOR_FRAMES * 50))
+		game->ray.color = 8;
+	else if (game->frames < (DOOR_FRAMES * 59))
+		game->ray.color = 9;
+	else
+	{
+		game->ray.color = 1;
+		game->frames = 0;
+	}
 }
 
 void	select_texture(t_game *game)
@@ -108,6 +110,6 @@ void	draw_texture(t_game *game, int x)
 		colors[2] = RGB_RED;
 		colors[3] = RGB_YELLOW;
 		draw_line_on(&game->data, game->ray.draw_start,
-		game->ray.draw_end, colors[game->ray.color]);
+			game->ray.draw_end, colors[game->ray.color]);
 	}
 }

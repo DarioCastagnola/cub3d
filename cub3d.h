@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/03 11:34:52 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:44:56 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_data
 	double	dy;
 	double	px;
 	double	py;
+	int		rgb_Fvalue;
+	int		rgb_Cvalue;
 	int		pixels;
 }	t_data;
 
@@ -93,7 +95,6 @@ typedef struct s_img
 	int		bpp;
 	int		ll;
 	int		endian;
-
 }	t_img;
 
 typedef struct s_player
@@ -207,6 +208,12 @@ void		draw_texture(t_game *game, int x);
 int			draw_frames(t_game *game);
 void		draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
 void		draw_background(t_data *img, t_vectors begin, t_vectors end);
-int	ft_mouse(int x, int y, void *param);
+int			ft_mouse(int x, int y, void *param);
+int			create_trgb(int t, int r, int g, int b);
+void		set_colors(t_game *game);
+int	is_colliding(t_game *game, double y, double x);
+
+
+
 
 #endif

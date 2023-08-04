@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:16:10 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/03 15:01:14 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:38:20 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 void	ft_load_door_image(t_game *game)
 {
 	game->walls[4].img = mlx_xpm_file_to_image(game->mlx,
-		"./maps/door/door_0.xpm", 
-		&game->walls[4].width, &game->walls[4].height);
+			"./maps/door/door_0.xpm", 
+			&game->walls[4].width, &game->walls[4].height);
 	game->walls[5].img = mlx_xpm_file_to_image(game->mlx,
-		"./maps/door/door_1.xpm", 
-		&game->walls[5].width, &game->walls[5].height);
+			"./maps/door/door_1.xpm", 
+			&game->walls[5].width, &game->walls[5].height);
 	game->walls[6].img = mlx_xpm_file_to_image(game->mlx,
-		"./maps/door/door_2.xpm", 
-		&game->walls[6].width, &game->walls[6].height);
+			"./maps/door/door_2.xpm", 
+			&game->walls[6].width, &game->walls[6].height);
 	game->walls[7].img = mlx_xpm_file_to_image(game->mlx,
-		"./maps/door/door_4.xpm", 
-		&game->walls[7].width, &game->walls[7].height);
+			"./maps/door/door_4.xpm", 
+			&game->walls[7].width, &game->walls[7].height);
 	game->walls[8].img = mlx_xpm_file_to_image(game->mlx,
-		"./maps/door/door_6.xpm", 
-		&game->walls[8].width, &game->walls[8].height);
+			"./maps/door/door_6.xpm", 
+			&game->walls[8].width, &game->walls[8].height);
 	game->walls[9].img = mlx_xpm_file_to_image(game->mlx,
-		"./maps/door/door_7.xpm", 
-		&game->walls[9].width, &game->walls[9].height);
+			"./maps/door/door_7.xpm", 
+			&game->walls[9].width, &game->walls[9].height);
 }
 
 void	ft_load_image(t_game *game, char **temp)
@@ -50,4 +50,3 @@ void	ft_load_image(t_game *game, char **temp)
 				temp[1], &game->walls[3].width, &game->walls[3].height);
 	ft_load_door_image(game);
 }
-

@@ -6,11 +6,19 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/31 16:30:47 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:45:20 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	set_colors(t_game *game)
+{
+	game->data.rgb_Fvalue = create_trgb(0, game->parser.f[0], game->parser.f[1],
+			game->parser.f[2]);
+	game->data.rgb_Cvalue = create_trgb(0, game->parser.c[0],
+			game->parser.c[1], game->parser.c[2]);
+}
 
 void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
 {
@@ -32,7 +40,7 @@ void	draw_background(t_data *img, t_vectors begin, t_vectors end)
 	img->py = 0;
 	while (begin.y > img->py)
 	{
-		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_SKY);
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, img->rgb_Cvalue);
 		img->py += img->dy;
 	}
 	while (img->pixels)
@@ -43,7 +51,7 @@ void	draw_background(t_data *img, t_vectors begin, t_vectors end)
 	}
 	while (img->py < SCREEN_H)
 	{
-		my_mlx_pixel_put(img, (int)img->px, (int)img->py, RGB_FLOOR);
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, img->rgb_Fvalue);
 		img->py += img->dy;
 	}
 }
@@ -78,27 +86,10 @@ void	draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color)
 
 int	draw_frames(t_game *game)
 {
-	// static int	oldmouse;
-	// int mouse_diff;
 	raycaster(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->data.img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->mini.data.img,
 		game->mini.x, game->mini.y);
-	// mlx_mouse_hide(game->mlx, game->mlx_win);
-	// mlx_mouse_get_pos(game->mlx, game->mlx_win, &game->mouse_x, &game->mouse_y);
-	// printf("mouse x = %d\n", game->mouse_x);
-	// oldmouse = 0;
-	// mouse_diff = game->mouse_x - oldmouse;
-	// mlx_get_screen_size(game->mlx, &game->screen_x, &game->screen_y);
-	// printf("screen x = %d\n screen y = %d\n", game->screen_x, game->screen_y);
-	// printf("old mouse = %d\n", oldmouse);
-	// printf("diff = %d\n", mouse_diff);
-	// if (game->mouse_x < 1270)
-	// 	game->player.rot_dir = -1;
-	// if (game->mouse_x > 1270)
-	// 	game->player.rot_dir = 1;
-	// oldmouse = game->mouse_x;
-	// printf("rotdir = %f\n", game->player.rot_dir);
 	draw_minimap(game);
 	update_inputs(game);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/31 16:37:41 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:44:56 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define SCREEN_W 1920
 #define SCREEN_H 1080
 #define TEXTURES 1
+#define DOOR_FRAMES 2
 
 // Field Of View
 #define FOV 0.66
@@ -71,6 +72,8 @@ typedef struct s_data
 	double	dy;
 	double	px;
 	double	py;
+	int		rgb_Fvalue;
+	int		rgb_Cvalue;
 	int		pixels;
 }	t_data;
 
@@ -92,7 +95,6 @@ typedef struct s_img
 	int		bpp;
 	int		ll;
 	int		endian;
-
 }	t_img;
 
 typedef struct s_player
@@ -158,7 +160,8 @@ typedef struct s_game
 	t_ray			ray;
 	t_data			data;
 	t_parser		parser;
-	t_img			walls[4];
+	t_img			walls[10];
+	int				frames;
 	int				mouse_x;
 	int				mouse_y;
 	int				screen_x;
@@ -205,6 +208,12 @@ void		draw_texture(t_game *game, int x);
 int			draw_frames(t_game *game);
 void		draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
 void		draw_background(t_data *img, t_vectors begin, t_vectors end);
-int	ft_mouse(int x, int y, void *param);
+int			ft_mouse(int x, int y, void *param);
+int			create_trgb(int t, int r, int g, int b);
+void		set_colors(t_game *game);
+int	is_colliding(t_game *game, double y, double x);
+
+
+
 
 #endif

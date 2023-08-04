@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:32:03 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/01 11:45:44 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:59:59 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	player_initialization(t_game *game)
 	game->player.mov_dir.y = 0;
 	game->player.rot_dir = 0;
 	game->x = SCREEN_W / 2;
+	set_colors(game);
 	startingpov(game);
 	game->parser.map[(int)game->player.pos.y][(int)game->player.pos.x] = '0';
 	return (0);

@@ -6,22 +6,11 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 14:22:36 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/31 13:35:04 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/04 14:43:58 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	is_colliding(t_game *game, double y, double x)
-{
-	if (game->parser.map[(int)y][(int)x] == '0')
-		return (0);
-	if (game->parser.map[(int)y][(int)x] == 'O')
-		return (0);
-	if (game->parser.map[(int)y][(int)x] == 'D')
-		return (0);
-	return (1);
-}
 
 void	update_dir_x(t_game *game)
 {
@@ -113,6 +102,7 @@ void	update_time(t_game *game)
 	mlx_string_put(game->mlx, game->mlx_win,
 		SCREEN_W - 20, 20, -1, curr_fps);
 	free(curr_fps);
+	game->frames += 1;
 }
 
 void	update_inputs(t_game *game)

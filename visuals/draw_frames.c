@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:42:48 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/04 14:45:20 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:35:28 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	set_colors(t_game *game)
 {
-	game->data.rgb_Fvalue = create_trgb(0, game->parser.f[0], game->parser.f[1],
+	game->data.rgb_fvalue = create_trgb(0, game->parser.f[0], game->parser.f[1],
 			game->parser.f[2]);
-	game->data.rgb_Cvalue = create_trgb(0, game->parser.c[0],
+	game->data.rgb_cvalue = create_trgb(0, game->parser.c[0],
 			game->parser.c[1], game->parser.c[2]);
 }
 
@@ -40,7 +40,7 @@ void	draw_background(t_data *img, t_vectors begin, t_vectors end)
 	img->py = 0;
 	while (begin.y > img->py)
 	{
-		my_mlx_pixel_put(img, (int)img->px, (int)img->py, img->rgb_Cvalue);
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, img->rgb_cvalue);
 		img->py += img->dy;
 	}
 	while (img->pixels)
@@ -51,7 +51,7 @@ void	draw_background(t_data *img, t_vectors begin, t_vectors end)
 	}
 	while (img->py < SCREEN_H)
 	{
-		my_mlx_pixel_put(img, (int)img->px, (int)img->py, img->rgb_Fvalue);
+		my_mlx_pixel_put(img, (int)img->px, (int)img->py, img->rgb_fvalue);
 		img->py += img->dy;
 	}
 }

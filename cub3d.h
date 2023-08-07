@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/04 14:44:56 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:33:09 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,27 @@
 # include <sys/time.h>
 
 // risoluzione
-#define SCREEN_W 1920
-#define SCREEN_H 1080
-#define TEXTURES 1
-#define DOOR_FRAMES 2
+
+# define SCREEN_W 1920
+# define SCREEN_H 1080
+# define TEXTURES 1
+# define DOOR_FRAMES 2
 
 // Field Of View
-#define FOV 0.66
+
+# define FOV 0.66
 
 // Pi
-#define PI 3.14159
+
+# define PI 3.14159
 
 // passo di movimento e rotazione
-#define MOVSPEED 0.1
-#define ROTSPEED 0.05
+
+# define MOVSPEED 0.1
+# define ROTSPEED 0.05
 
 // Dimensioni della minimappa
 
-#define MINIMAP_SCALE (int)(SCREEN_W / 150)
 # define RGB_RED 0x00FFA0A0
 # define RGB_GREEN 0x0000FF00
 # define RGB_BLUE 0x000000FF
@@ -55,11 +58,22 @@
 
 // ---------- STRUCTS
 
+// typedef	struct s_game;
+
 typedef struct s_vectors
 {
 	double	x;
 	double	y;
 }	t_vectors;
+
+typedef struct s_tex
+{
+	double			step;
+	double			texpos;
+	int				tex_width;
+	int				tex_height;
+	int				tex_idx;
+}	t_tex;
 
 typedef struct s_data 
 {
@@ -72,8 +86,8 @@ typedef struct s_data
 	double	dy;
 	double	px;
 	double	py;
-	int		rgb_Fvalue;
-	int		rgb_Cvalue;
+	int		rgb_fvalue;
+	int		rgb_cvalue;
 	int		pixels;
 }	t_data;
 
@@ -131,24 +145,23 @@ typedef struct s_ray
 
 typedef struct parser
 {
-	char	**readmap;
-	char	**map;
-	int		inimap;
-	int		inidata;
-	int		x;
-	int		y;
-	int		mwidth;
-	int		mheight;
-	int		f[3];
-	int		c[3];
-
+	char			**readmap;
+	char			**map;
+	int				inimap;
+	int				inidata;
+	int				x;
+	int				y;
+	int				mwidth;
+	int				mheight;
+	int				f[3];
+	int				c[3];
+	struct s_game	*game;
 }		t_parser;
 
 //GAME
 
 typedef struct s_game
 {
-
 	void			*mlx;
 	void			*mlx_win;
 	double			frame_time;
@@ -166,36 +179,38 @@ typedef struct s_game
 	int				mouse_y;
 	int				screen_x;
 	int				screen_y;
+	int				mscale;
 	t_data			screen;
 	t_mini			mini;
+	t_tex			tex;
 }	t_game;
-
 
 //TEMP PARSER
 
-char	**ft_readmap(t_parser *parser, char *path);
-void	ft_map(t_parser *parser);
-void	ft_print_mat(char **mat);
-void	ft_free_mat(char **mat);
-void	ft_free_err(t_parser *parser, char *s);
-void	ft_inimap(t_parser *parser);
-void	ft_inidata(t_parser *parser);
-void	ft_size_map(t_parser *parser);
-void	ft_check_texture(t_parser *parser, t_game *game);
-void	ft_check_size(t_parser *parser, char *path);
-void	ft_check_fc(t_parser *parser);
-void	ft_check_map(t_parser *parser);
-void	ft_check_lmap(t_parser *parser);
-void	ft_check_symbol_map(t_parser *parser);
-void	ft_check_rgb(int y, t_parser *parser);
-void	ft_load_image(t_game *game, char **temp);
+char		**ft_readmap(t_parser *parser, char *path);
+void		ft_map(t_parser *parser);
+void		ft_print_mat(char **mat);
+void		ft_free_mat(char ***mat);
+void		ft_free_err(t_parser *parser, char *s);
+void		ft_inimap(t_parser *parser);
+void		ft_inidata(t_parser *parser);
+void		ft_size_map(t_parser *parser);
+void		ft_check_texture(t_parser *parser, t_game *game);
+void		ft_check_size(t_parser *parser, char *path);
+void		ft_check_fc(t_parser *parser);
+void		ft_check_map(t_parser *parser);
+void		ft_check_lmap(t_parser *parser);
+void		ft_check_symbol_map(t_parser *parser);
+void		ft_check_rgb(int y, t_parser *parser);
+void		ft_load_image(t_game *game, char **temp);
 
 //TEMP RAYCASTING
 
+void		ft_load_door_image(t_game *game);
 void		ft_sleep(u_int64_t time);
 int			start_game(t_game *game);
-void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
-void	draw_minimap(t_game	*game);
+void		my_mlx_pixel_put(t_data *img, int x, int y, int color);
+void		draw_minimap(t_game	*game);
 void		init_game(t_game *game);
 u_int64_t	get_time(void);
 int			player_initialization(t_game *game);
@@ -206,14 +221,13 @@ int			key_hook_release(int key, t_game *game);
 void		raycaster(t_game *game);
 void		draw_texture(t_game *game, int x);
 int			draw_frames(t_game *game);
-void		draw_line_on(t_data *img, t_vectors begin, t_vectors end, int color);
+void		draw_line_on(t_data *img, t_vectors begin,
+				t_vectors end, int color);
 void		draw_background(t_data *img, t_vectors begin, t_vectors end);
 int			ft_mouse(int x, int y, void *param);
 int			create_trgb(int t, int r, int g, int b);
 void		set_colors(t_game *game);
-int	is_colliding(t_game *game, double y, double x);
-
-
-
+int			is_colliding(t_game *game, double y, double x);
+void		door_animation(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:15:02 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/07 14:59:33 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:13:44 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_free_mat(char ***mat)
 	*mat = NULL;
 }
 
-void	ft_free_err(t_parser *parser, char *s)
+void	ft_free_err_img(t_parser *parser, char *s)
 {
 	int	i;
 
@@ -56,6 +56,15 @@ void	ft_free_err(t_parser *parser, char *s)
 			mlx_destroy_image(parser->game->mlx, parser->game->walls[i].img);
 		}
 	}
+	ft_free_mat(&parser->readmap);
+	ft_free_mat(&parser->map);
+	while (*s)
+		write(2, s++, 1);
+	exit(1);
+}
+
+void	ft_free_err(t_parser *parser, char *s)
+{
 	ft_free_mat(&parser->readmap);
 	ft_free_mat(&parser->map);
 	while (*s)

@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/07 15:33:09 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:00:50 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ void		ft_check_lmap(t_parser *parser);
 void		ft_check_symbol_map(t_parser *parser);
 void		ft_check_rgb(int y, t_parser *parser);
 void		ft_load_image(t_game *game, char **temp);
+void		ft_free_err_img(t_parser *parser, char *s);
 
 //TEMP RAYCASTING
 

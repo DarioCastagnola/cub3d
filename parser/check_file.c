@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/08 14:17:11 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:38:42 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,8 @@ void	ft_check_texture(t_parser *parser, t_game *game)
 	}
 	ft_load_door_image(game);
 	if (!game->walls[0].img || !game->walls[1].img || !game->walls[2].img
-		|| !game->walls[3].img)
-		ft_free_err(parser, "Error: image not found\n");
-	if (!game->walls[4].img || !game->walls[5].img || !game->walls[6].img
+		|| !game->walls[3].img || !game->walls[4].img || !game->walls[5].img
+		|| !game->walls[6].img || !game->walls[7].img || !game->walls[8].img
 		|| !game->walls[9].img)
 		ft_free_err(parser, "Error: image not found\n");
 	while (++i < 10)

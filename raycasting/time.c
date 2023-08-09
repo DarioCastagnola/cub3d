@@ -6,11 +6,32 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:31:11 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/07/18 14:58:15 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:08:12 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	door_animation(t_game *game)
+{
+	if (game->frames < (DOOR_FRAMES * 4))
+		game->ray.color = 4;
+	else if (game->frames < (DOOR_FRAMES * 8))
+		game->ray.color = 5;
+	else if (game->frames < (DOOR_FRAMES * 12))
+		game->ray.color = 6;
+	else if (game->frames < (DOOR_FRAMES * 16))
+		game->ray.color = 7;
+	else if (game->frames < (DOOR_FRAMES * 20))
+		game->ray.color = 8;
+	else if (game->frames < (DOOR_FRAMES * 24))
+		game->ray.color = 9;
+	else
+	{
+		game->ray.color = 1;
+		game->frames = 0;
+	}
+}
 
 u_int64_t	get_time(void)
 {

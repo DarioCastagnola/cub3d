@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:15:09 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/04 15:06:21 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:57:29 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,49 +32,41 @@ int	get_texture_x(t_game *game)
 	return (tex_x);
 }
 
+void	render_texture2(t_game *game)
+{
+	game->tex.step = (double)game->walls[game->ray.color].width
+		/ game->ray.line_height;
+	game->tex.texpos = (game->ray.draw_start.y - SCREEN_H / 2
+			+ game->ray.line_height / 2) * game->tex.step;
+	draw_background(&game->data, game->ray.draw_start, game->ray.draw_end);
+	game->tex.tex_width = game->walls[game->ray.color].width;
+	game->tex.tex_height = game->walls[game->ray.color].height;
+}
+
 void	render_texture(t_game *game, int x)
 {
-	double			step;
-	double			texpos;
 	int				y;
 	t_vectors		tex;
 	unsigned int	color;
 
 	tex.x = get_texture_x(game);
-	step = 1.0 * game->walls[game->ray.color].width / game->ray.line_height;
-	texpos = (game->ray.draw_start.y - SCREEN_H / 2
-			+ game->ray.line_height / 2) * step;
+	render_texture2(game);
 	y = game->ray.draw_start.y - 1;
-	draw_background(&game->data, game->ray.draw_start, game->ray.draw_end);
 	while (++y < game->ray.draw_end.y)
 	{
-		tex.y = (int)texpos & (game->walls[game->ray.color].width - 1);
-		texpos += step;
-		color = *(unsigned int *)(game->walls[game->ray.color].addr
-				+ 4 * (game->walls[game->ray.color].width
-					* (int)tex.y + (int)tex.x));
+		tex.y = (int)game->tex.texpos % game->tex.tex_height;
+		game->tex.texpos += game->tex.step;
+		if (tex.y < 0)
+			tex.y += game->tex.tex_height;
+		game->tex.tex_idx = (int)tex.x + game->tex.tex_width * tex.y;
+		if (game->tex.tex_idx < 0)
+			game->tex.tex_idx = 0;
+		else if (game->tex.tex_idx >= game->tex.tex_width
+			* game->tex.tex_height)
+			game->tex.tex_idx = game->tex.tex_width * game->tex.tex_height - 1;
+		color = *(unsigned int *)(game->walls[game->ray.color].addr + 4
+				* game->tex.tex_idx);
 		my_mlx_pixel_put(&game->data, x, y, color);
-	}
-}
-
-void	door_animation(t_game *game)
-{
-	if (game->frames < (DOOR_FRAMES * 4))
-		game->ray.color = 4;
-	else if (game->frames < (DOOR_FRAMES * 8))
-		game->ray.color = 5;
-	else if (game->frames < (DOOR_FRAMES * 12))
-		game->ray.color = 6;
-	else if (game->frames < (DOOR_FRAMES * 16))
-		game->ray.color = 7;
-	else if (game->frames < (DOOR_FRAMES * 20))
-		game->ray.color = 8;
-	else if (game->frames < (DOOR_FRAMES * 24))
-		game->ray.color = 9;
-	else
-	{
-		game->ray.color = 1;
-		game->frames = 0;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:49:57 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/04 16:24:53 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:33:22 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_square(t_data *img, t_vectors start, int side, int color)
 	}
 }
 
-void	draw_minimap(t_game *game)
+void	minimap_colorinmap(t_game *game)
 {
 	int			x;
 	int			y;
@@ -38,30 +38,38 @@ void	draw_minimap(t_game *game)
 		x = -1;
 		while (game->parser.map[y][++x])
 		{
-			start.x = x * MINIMAP_SCALE;
-			start.y = y * MINIMAP_SCALE;
+			start.x = x * game->mscale;
+			start.y = y * game->mscale;
 			if (game->parser.map[y][x] == '1')
 				draw_square(&game->mini.data, start,
-					MINIMAP_SCALE, 0x00FFFFFF);
+					game->mscale, 0x00FFFFFF);
 			else if (game->parser.map[y][x] == 'D')
 				draw_square(&game->mini.data, start,
-					MINIMAP_SCALE, RGB_GREEN);
+					game->mscale, RGB_GREEN);
 			else if (game->parser.map[y][x] == 'd')
 				draw_square(&game->mini.data, start,
-					MINIMAP_SCALE, RGB_BLUE); 
+					game->mscale, RGB_BLUE); 
 			else
-				draw_square(&game->mini.data, start, MINIMAP_SCALE, 0x00000000);
+				draw_square(&game->mini.data, start, game->mscale, 0x00000000);
 		}
 	}
-	start.x = (game->player.pos.x * MINIMAP_SCALE);
-	start.y = (game->player.pos.y * MINIMAP_SCALE) - 2;
-	draw_square(&game->mini.data, start, MINIMAP_SCALE / 2, 0x00FF0000);
+}
+
+void	draw_minimap(t_game *game)
+{
+	t_vectors	start;
+
+	minimap_colorinmap(game);
+	start.x = (game->player.pos.x * game->mscale);
+	start.y = (game->player.pos.y * game->mscale) - 2;
+	draw_square(&game->mini.data, start, game->mscale / 2, 0x00FF0000);
 }
 
 void	init_minimap(t_game *game)
 {
-	game->mini.width = game->parser.mwidth * MINIMAP_SCALE;
-	game->mini.height = game->parser.mheight * MINIMAP_SCALE;
+	game->mscale = (int)(SCREEN_W / 150);
+	game->mini.width = game->parser.mwidth * game->mscale;
+	game->mini.height = game->parser.mheight * game->mscale;
 	game->mini.x = 0;
 	game->mini.y = 0;
 	game->mini.data.img = mlx_new_image(game->mlx, game->mini.width,
@@ -73,16 +81,11 @@ void	init_minimap(t_game *game)
 
 void	init_game(t_game *game)
 {
-	// int	i;
-
 	game->frames = 0;
 	game->mlx_win = mlx_new_window(game->mlx, SCREEN_W, SCREEN_H, "cub3d");
 	game->data.img = mlx_new_image(game->mlx, SCREEN_W, SCREEN_H);
 	game->data.addr = mlx_get_data_addr(game->data.img,
 			&game->data.bits_per_pixel, &game->data.line_length,
 			&game->data.endian);
-	// i = -1;
-	// while (++i < 10)
-	// 	game->walls[i].img = NULL;
 	init_minimap(game);
 }

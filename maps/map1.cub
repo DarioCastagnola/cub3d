@@ -1,7 +1,7 @@
-NO ./maps/dcastagn.xpm
-SO ./maps/adi-stef.xpm
-WE ./maps/lde-mich.xpm
-EA ./maps/gpanico.xpm
+NO ./maps/greystone.xpm
+SO ./maps/colorstone.xpm
+WE ./maps/wood.xpm
+EA ./maps/mossy.xpm
 
 F 105,105,105
 C 240,230,140

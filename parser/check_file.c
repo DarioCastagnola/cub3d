@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/04 16:32:29 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:14:53 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	ft_check_rgb(int y, t_parser *parser)
 	int		i;
 
 	temp = ft_split(parser->readmap[y], 32);
+	if (!temp[1])
+		ft_free_err(parser, "Error\nRgb missing\n");
 	temp1 = ft_split(temp[1], 44);
 	i = 0;
 	while (temp1[i])
@@ -86,25 +88,26 @@ void	ft_check_texture(t_parser *parser, t_game *game)
 	char	**temp;
 	int		i;
 
-	y = 0;
 	i = -1;
+	while (++i < 10)
+		game->walls[i].img = 0;
 	temp = NULL;
+	y = 0;
 	while (parser->readmap[y] && y < 4)
 	{
-		temp = ft_split(parser->readmap[y], 32);
+		temp = ft_split(parser->readmap[y++], 32);
 		ft_load_image(game, temp);
 		ft_free_mat(&temp);
-		y++;
 	}
 	ft_load_door_image(game);
 	if (!game->walls[0].img || !game->walls[1].img || !game->walls[2].img
-		|| !game->walls[3].img)
-		ft_free_err(parser, "Error: image not found\n");
-	if (!game->walls[4].img || !game->walls[5].img || !game->walls[6].img
+		|| !game->walls[3].img || !game->walls[4].img || !game->walls[5].img
+		|| !game->walls[6].img || !game->walls[7].img || !game->walls[8].img
 		|| !game->walls[9].img)
 		ft_free_err(parser, "Error: image not found\n");
+	i = -1;
 	while (++i < 10)
-	game->walls[i].addr = mlx_get_data_addr(game->walls[i].img,
-		&game->walls[i].bpp,&game->walls[i].ll,
-		&game->walls[i].endian);
+		game->walls[i].addr = mlx_get_data_addr(game->walls[i].img,
+				&game->walls[i].bpp, &game->walls[i].ll,
+				&game->walls[i].endian);
 }

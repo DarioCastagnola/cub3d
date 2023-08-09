@@ -1,7 +1,7 @@
-NO ./maps/greystone.xpm
-SO ./maps/colorstone.xpm
-WE ./maps/wood.xpm
-EA ./maps/mossy.xpm
+NO ./maps/pupone.xpm
+SO ./maps/pupone.xpm
+WE ./maps/pupone.xpm
+EA ./maps/pupone.xpm
 
 F 105,105,105
 C 240,230,140

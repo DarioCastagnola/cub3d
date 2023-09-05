@@ -6,31 +6,31 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/09/04 16:01:13 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:32:46 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_inidata(t_parser *parser)
-{
-	int	y;
-	int	count;
+// void	ft_inidata(t_parser *parser)
+// {
+// 	int	y;
+// 	int	count;
 
-	count = 0;
-	y = 0;
-	while (parser->readmap[y] && count <= 4)
-	{
-		if (parser->readmap[y] && parser->readmap[y][0] != 0)
-		{
-			count++;
-			y++;
-		}
-		else
-			y++;
-	}
-	parser->inidata = y - 1;
-}
+// 	count = 0;
+// 	y = 0;
+// 	while (parser->readmap[y] && count <= 4)
+// 	{
+// 		if (parser->readmap[y] && parser->readmap[y][0] != 0)
+// 		{
+// 			count++;
+// 			y++;
+// 		}
+// 		else
+// 			y++;
+// 	}
+// 	parser->inidata = y - 1;
+// }
 
 void	ft_check_rgb(int y, t_parser *parser)
 {
@@ -59,27 +59,53 @@ void	ft_check_rgb(int y, t_parser *parser)
 	ft_free_mat(&temp1);
 }
 
+// void	ft_check_fc(t_parser *parser)
+// {
+// 	int		x;
+// 	int		y;
+// 	int		count;
+
+// 	ft_inidata(parser);
+// 	y = parser->inidata;
+// 	count = 0;
+// 	while (parser->readmap[y] && count < 2)
+// 	{
+// 		x = 0;
+// 		while (parser->readmap[y][x] == 32)
+// 			x++;
+// 		if (parser->readmap[y][x] == 70 || parser->readmap[y][x] == 67)
+// 			ft_check_rgb(y, parser);
+// 		else
+// 			ft_free_err(parser, "Error\nRgb not supported\n");
+// 		y++;
+// 		count++;
+// 	}
+// }
+
 void	ft_check_fc(t_parser *parser)
 {
 	int		x;
 	int		y;
 	int		count;
 
-	ft_inidata(parser);
-	y = parser->inidata;
 	count = 0;
+	y = 0;
 	while (parser->readmap[y] && count < 2)
 	{
 		x = 0;
-		while (parser->readmap[y][x] == 32)
+		while (parser->readmap[y][x] && count < 2)
+		{
+			if (parser->readmap[y][x] == 70 || parser->readmap[y][x] == 67)
+			{
+				ft_check_rgb(y, parser);
+				count++;
+			}
 			x++;
-		if (parser->readmap[y][x] == 70 || parser->readmap[y][x] == 67)
-			ft_check_rgb(y, parser);
-		else
-			ft_free_err(parser, "Error\nRgb not supported\n");
+		}
 		y++;
-		count++;
 	}
+	if (count != 2)
+		ft_free_err(parser, "Error\nRgb not supported\n");
 }
 
 void	ft_check_texture(t_parser *parser, t_game *game)
@@ -91,14 +117,17 @@ void	ft_check_texture(t_parser *parser, t_game *game)
 	i = -1;
 	while (++i < 10)
 		game->walls[i].img = 0;
-	temp = NULL;
+	i = 0;
 	y = 0;
-	while (parser->readmap[y] && y < 4)
+	while (parser->readmap[y] && i < 4)
 	{
 		temp = ft_split(parser->readmap[y++], 32);
-		ft_load_image(game, temp);
+		if (temp[0] && temp[1])
+			i += (!(!temp[2]) * 5) + ft_load_image(game, temp);
 		ft_free_mat(&temp);
 	}
+	if (i != 4)
+		ft_free_err(parser, "Error: image not found\n");
 	ft_load_door_image(game);
 	if (!game->walls[0].img || !game->walls[1].img || !game->walls[2].img
 		|| !game->walls[3].img || !game->walls[4].img || !game->walls[5].img

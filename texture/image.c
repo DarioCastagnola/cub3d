@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:16:10 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/08/09 17:03:44 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:06:35 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_load_door_image(t_game *game)
 			&game->walls[9].width, &game->walls[9].height);
 }
 
-void	ft_load_image(t_game *game, char **temp)
+int	ft_load_image(t_game *game, char **temp)
 {
 	if (!ft_strncmp(temp[0], "NO", 3))
 		game->walls[0].img = mlx_xpm_file_to_image(game->mlx,
@@ -48,4 +48,7 @@ void	ft_load_image(t_game *game, char **temp)
 	else if (!ft_strncmp(temp[0], "WE", 3))
 		game->walls[3].img = mlx_xpm_file_to_image(game->mlx,
 				temp[1], &game->walls[3].width, &game->walls[3].height);
+	else
+		return (0);
+	return (1);
 }

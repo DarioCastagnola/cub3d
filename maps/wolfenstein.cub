@@ -1,7 +1,7 @@
 NO ./maps/bluestone.xpm
 SO ./maps/bluestone.xpm
 WE ./maps/bluestone.xpm
-EA ./maps/bluestone.xpm
+EA ./maps/bluestone.xpm 
 
 F 105,104,103
 C 64,63,62

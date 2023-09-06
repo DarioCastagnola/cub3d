@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/09/05 11:52:08 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:45:24 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ void		ft_inimap(t_parser *parser);
 void		ft_inidata(t_parser *parser);
 void		ft_size_map(t_parser *parser);
 void		ft_check_texture(t_parser *parser, t_game *game);
+void		ft_check_wall(t_parser *parser, t_game *game);
 void		ft_check_size(t_parser *parser, char *path);
 void		ft_check_fc(t_parser *parser);
 void		ft_check_map(t_parser *parser);

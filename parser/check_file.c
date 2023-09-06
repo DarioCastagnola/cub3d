@@ -6,31 +6,11 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/09/05 16:32:46 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:46:54 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// void	ft_inidata(t_parser *parser)
-// {
-// 	int	y;
-// 	int	count;
-
-// 	count = 0;
-// 	y = 0;
-// 	while (parser->readmap[y] && count <= 4)
-// 	{
-// 		if (parser->readmap[y] && parser->readmap[y][0] != 0)
-// 		{
-// 			count++;
-// 			y++;
-// 		}
-// 		else
-// 			y++;
-// 	}
-// 	parser->inidata = y - 1;
-// }
 
 void	ft_check_rgb(int y, t_parser *parser)
 {
@@ -59,29 +39,6 @@ void	ft_check_rgb(int y, t_parser *parser)
 	ft_free_mat(&temp1);
 }
 
-// void	ft_check_fc(t_parser *parser)
-// {
-// 	int		x;
-// 	int		y;
-// 	int		count;
-
-// 	ft_inidata(parser);
-// 	y = parser->inidata;
-// 	count = 0;
-// 	while (parser->readmap[y] && count < 2)
-// 	{
-// 		x = 0;
-// 		while (parser->readmap[y][x] == 32)
-// 			x++;
-// 		if (parser->readmap[y][x] == 70 || parser->readmap[y][x] == 67)
-// 			ft_check_rgb(y, parser);
-// 		else
-// 			ft_free_err(parser, "Error\nRgb not supported\n");
-// 		y++;
-// 		count++;
-// 	}
-// }
-
 void	ft_check_fc(t_parser *parser)
 {
 	int		x;
@@ -108,6 +65,23 @@ void	ft_check_fc(t_parser *parser)
 		ft_free_err(parser, "Error\nRgb not supported\n");
 }
 
+void	ft_check_wall(t_parser *parser, t_game *game)
+{
+	int	i;
+
+	ft_load_door_image(game);
+	if (!game->walls[0].img || !game->walls[1].img || !game->walls[2].img
+		|| !game->walls[3].img || !game->walls[4].img || !game->walls[5].img
+		|| !game->walls[6].img || !game->walls[7].img || !game->walls[8].img
+		|| !game->walls[9].img)
+		ft_free_err(parser, "Error: image not found\n");
+	i = -1;
+	while (++i < 10)
+		game->walls[i].addr = mlx_get_data_addr(game->walls[i].img,
+				&game->walls[i].bpp, &game->walls[i].ll,
+				&game->walls[i].endian);
+}
+
 void	ft_check_texture(t_parser *parser, t_game *game)
 {
 	int		y;
@@ -128,15 +102,5 @@ void	ft_check_texture(t_parser *parser, t_game *game)
 	}
 	if (i != 4)
 		ft_free_err(parser, "Error: image not found\n");
-	ft_load_door_image(game);
-	if (!game->walls[0].img || !game->walls[1].img || !game->walls[2].img
-		|| !game->walls[3].img || !game->walls[4].img || !game->walls[5].img
-		|| !game->walls[6].img || !game->walls[7].img || !game->walls[8].img
-		|| !game->walls[9].img)
-		ft_free_err(parser, "Error: image not found\n");
-	i = -1;
-	while (++i < 10)
-		game->walls[i].addr = mlx_get_data_addr(game->walls[i].img,
-				&game->walls[i].bpp, &game->walls[i].ll,
-				&game->walls[i].endian);
+	ft_check_wall(parser, game);
 }

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
 /*   Updated: 2023/09/08 11:47:43 by lde-mich         ###   ########.fr       */
@@ -60,6 +60,7 @@ int	main(int argc, char **argv)
 	ft_check_player(&parser);
 	ft_check_symbol_map(&parser);
 	game.parser = parser;
+	game.parser.game = &game;
 	start_game(&game);
 	init_game(&game);
 	mlx_hooks(&game);

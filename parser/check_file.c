@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/09/08 12:08:07 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:07:25 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+//update_sep_8
 
 void	ft_check_rgb(int y, t_parser *parser)
 {

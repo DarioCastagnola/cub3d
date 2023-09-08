@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/09/05 15:44:18 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:47:43 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int argc, char **argv)
 	ft_check_texture(&parser, &game);
 	ft_check_lmap(&parser);
 	ft_check_map(&parser);
+	ft_check_player(&parser);
 	ft_check_symbol_map(&parser);
 	game.parser = parser;
 	start_game(&game);

@@ -6,7 +6,7 @@
 /*   By: lde-mich <lde-mich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:39:41 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/09/06 14:45:24 by lde-mich         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:47:05 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ void		ft_check_fc(t_parser *parser);
 void		ft_check_map(t_parser *parser);
 void		ft_check_lmap(t_parser *parser);
 void		ft_check_symbol_map(t_parser *parser);
+void		ft_check_player(t_parser *parser);
 void		ft_check_rgb(int y, t_parser *parser);
 int			ft_load_image(t_game *game, char **temp);
 void		ft_free_err_img(t_parser *parser, char *s);

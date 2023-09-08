@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 11:35:23 by dcastagn          #+#    #+#             */
-/*   Updated: 2023/08/07 14:36:09 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:50:49 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char **argv)
 	game.mlx = mlx_init();
 	parser.map = NULL;
 	parser.readmap = NULL;
+	parser.game = &game;
 	ft_check_input(argv[1], argc);
 	ft_check_size(&parser, argv[1]);
 	parser.readmap = ft_readmap(&parser, argv[1]);

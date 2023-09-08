@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:45:56 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/09/08 12:56:42 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/09/08 14:44:58 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,34 @@ void	ft_check_player(t_parser *parser)
 		ft_free_err(parser, "Error\nMap error\n");
 }
 
+// void	ft_check_map(t_parser *parser)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	y = 0;
+// 	while (parser->map[y])
+// 	{
+// 		x = 0;
+// 		while (parser->map[y][x])
+// 		{
+// 			if (ft_strchr("0DNWSE", parser->map[y][x]))
+// 			{
+// 				if (parser->map[y - 1][x] == 32 || parser->map[y + 1][x] == 32
+// 					|| parser->map[y][x - 1] == 32
+// 					|| parser->map[y][x + 1] == 32)
+// 					ft_free_err(parser, "Error\nnot surrounded by wall\n");
+// 				else if (!parser->map[y - 1][x] || !parser->map[y + 1][x]
+// 					|| !parser->map[y][x + 1] || !parser->map[y][x - 1])
+// 					ft_free_err(parser, "Error\nnot surrounded by wall\n");
+// 			}
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
+
+
 void	ft_check_map(t_parser *parser)
 {
 	int	x;
@@ -53,8 +81,8 @@ void	ft_check_map(t_parser *parser)
 					|| (x && parser->map[y][x - 1] == 32)
 					|| parser->map[y][x + 1] == 32)
 					ft_free_err(parser, "Error\nnot surrounded by wall\n");
-				else if ((y && !parser->map[y - 1][x]) || !parser->map[y + 1][x]
-					|| !parser->map[y][x + 1] || (x && !parser->map[y][x - 1]))
+				else if (!y || !parser->map[y + 1][x]
+					|| !parser->map[y][x + 1] || !x)
 					ft_free_err(parser, "Error\nnot surrounded by wall\n");
 			}
 			x++;

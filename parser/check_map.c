@@ -6,11 +6,34 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:45:56 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/09/08 11:48:42 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:55:18 by lde-mich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	ft_check_player(t_parser *parser)
+{
+	int	x;
+	int	y;
+	int	count;
+
+	y = 0;
+	count = 0;
+	while (parser->map[y])
+	{
+		x = 0;
+		while (parser->map[y][x])
+		{
+			if (ft_strchr("NWSE", parser->map[y][x]))
+				count++;
+			x++;
+		}
+		y++;
+	}
+	if (count != 1)
+		ft_free_err(parser, "Error\nMap error\n");
+}
 
 void	ft_check_map(t_parser *parser)
 {
@@ -23,7 +46,7 @@ void	ft_check_map(t_parser *parser)
 		x = 0;
 		while (parser->map[y][x])
 		{
-			if (parser->map[y][x] == '0')
+			if (ft_strchr("0DNWSE", parser->map[y][x]))
 			{
 				if (parser->map[y - 1][x] == 32 || parser->map[y + 1][x] == 32
 					|| parser->map[y][x - 1] == 32

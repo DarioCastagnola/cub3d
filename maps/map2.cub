@@ -1,10 +1,10 @@
 NO ./maps/pupone2.xpm
+C 240,230,140
 SO ./maps/pupone2.xpm
+F 105,105,105
 WE ./maps/pupone2.xpm
 EA ./maps/pupone2.xpm
 
-F 105,105,105
-C 240,230,140
 
    1    1111111111111111111111111
   101   100000000011000000000D001

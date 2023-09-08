@@ -6,7 +6,7 @@
 /*   By: dcastagn <dcastagn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 14:59:32 by lde-mich          #+#    #+#             */
-/*   Updated: 2023/09/08 11:47:29 by dcastagn         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:08:07 by dcastagn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_check_rgb(int y, t_parser *parser)
 	int		i;
 
 	temp = ft_split(parser->readmap[y], 32);
+	if (!temp[1] || temp[2])
 		ft_free_err(parser, "Error\nRgb missing\n");
 	temp1 = ft_split(temp[1], 44);
 	i = 0;
